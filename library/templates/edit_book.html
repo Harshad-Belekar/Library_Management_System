@@ -1,0 +1,239 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Edit Book - Library Management System</title>
+
+    <link rel="stylesheet" href="{% static 'edit_book.css' %}">
+
+</head>
+
+
+<body>
+
+
+<!-- HEADER -->
+
+<div class="header">
+
+    <div class="brand">
+
+        <div class="brand-icon">
+            📚
+        </div>
+
+        <div>
+
+            <h1>Edit Book</h1>
+
+            <p>
+                Update library book information
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <a
+        href="{% url 'manage_books' %}"
+        class="back"
+    >
+        ← Manage Books
+    </a>
+
+</div>
+
+
+
+<!-- MAIN -->
+
+<div class="container">
+
+
+    <div class="form-card">
+
+
+        <div class="title">
+
+            <div class="title-icon">
+                ✏️
+            </div>
+
+            <h2>
+                Edit Book
+            </h2>
+
+            <p>
+                Update the details of this book
+            </p>
+
+        </div>
+
+
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+
+            <div class="row">
+
+
+                <div class="field">
+
+                    <label>
+                        Book Title
+                    </label>
+
+                    <input
+                        type="text"
+                        name="title"
+                        value="{{ book.title }}"
+                        placeholder="Enter book title"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        Author
+                    </label>
+
+                    <input
+                        type="text"
+                        name="author"
+                        value="{{ book.author }}"
+                        placeholder="Enter author name"
+                        required
+                    >
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="row">
+
+
+                <div class="field">
+
+                    <label>
+                        Category
+                    </label>
+
+                    <input
+                        type="text"
+                        name="category"
+                        value="{{ book.category }}"
+                        placeholder="Enter category"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        ISBN
+                    </label>
+
+                    <input
+                        type="text"
+                        name="isbn"
+                        value="{{ book.isbn }}"
+                        placeholder="Enter ISBN"
+                        required
+                    >
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="field">
+
+                <label>
+                    Quantity
+                </label>
+
+                <input
+                    type="number"
+                    name="quantity"
+                    value="{{ book.quantity }}"
+                    min="1"
+                    required
+                >
+
+            </div>
+
+
+
+            <div class="field">
+
+                <label>
+                    Description
+                </label>
+
+                <textarea
+                    name="description"
+                    placeholder="Enter book description..."
+                >{{ book.description }}</textarea>
+
+            </div>
+
+
+
+            <div class="buttons">
+
+                <button
+                    type="submit"
+                    class="update"
+                >
+                    ✓ Update Book
+                </button>
+
+
+                <a
+                    href="{% url 'manage_books' %}"
+                    class="cancel"
+                >
+                    Cancel
+                </a>
+
+            </div>
+
+
+        </form>
+
+
+    </div>
+
+
+    <div class="footer">
+
+        📚 Library Management System • Book Collection
+
+    </div>
+
+
+</div>
+
+
+</body>
+
+</html>

@@ -1,0 +1,281 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>{{ test.title }} - Test</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Constantia","Times New Roman",Georgia,serif;
+}
+
+body{
+    min-height:100vh;
+    background:
+        linear-gradient(rgba(6,25,45,.88),rgba(6,25,45,.88)),
+        url("{% static 'library.jpg.png' %}")
+        center center / cover fixed no-repeat;
+    color:white;
+}
+
+.header{
+    background:rgba(8,31,55,.97);
+    min-height:75px;
+    padding:15px 40px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid rgba(255,255,255,.15);
+}
+
+.logo{
+    color:#ffad00;
+    font-size:23px;
+    font-weight:bold;
+}
+
+.logo span{
+    color:white;
+}
+
+.back-btn{
+    text-decoration:none;
+    color:white;
+    background:#1769a8;
+    padding:9px 18px;
+    border-radius:20px;
+    font-size:14px;
+}
+
+.main{
+    max-width:900px;
+    margin:auto;
+    padding:35px 20px;
+}
+
+.test-header{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.test-header h1{
+    color:#ffad00;
+    font-size:34px;
+    margin-bottom:8px;
+}
+
+.test-header p{
+    color:#c7d7e6;
+}
+
+.question-card{
+    background:rgba(218,233,247,.96);
+    color:#17304d;
+    padding:25px;
+    margin-bottom:20px;
+    border-radius:16px;
+    box-shadow:0 10px 25px rgba(0,0,0,.35);
+    border-left:5px solid #1769a8;
+}
+
+.question{
+    font-size:18px;
+    font-weight:bold;
+    margin-bottom:18px;
+}
+
+.option{
+    display:block;
+    background:#f5f9fc;
+    border:1px solid #c8d7e5;
+    padding:12px 15px;
+    margin:9px 0;
+    border-radius:10px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.option:hover{
+    background:#e2f1ff;
+    border-color:#1769a8;
+}
+
+.option input{
+    margin-right:10px;
+    accent-color:#1769a8;
+}
+
+.submit-box{
+    text-align:center;
+    margin:30px 0;
+}
+
+.submit-btn{
+    border:0;
+    background:#1769a8;
+    color:white;
+    padding:13px 35px;
+    border-radius:25px;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.submit-btn:hover{
+    background:#0e568b;
+}
+
+.empty{
+    text-align:center;
+    background:rgba(7,29,51,.9);
+    border-radius:18px;
+    padding:50px;
+    color:#b8c9d8;
+    font-size:18px;
+}
+
+.footer{
+    text-align:center;
+    padding:20px;
+    color:#8297aa;
+    font-size:13px;
+}
+
+@media(max-width:600px){
+
+    .header{
+        padding:15px 18px;
+    }
+
+    .logo{
+        font-size:18px;
+    }
+
+    .main{
+        padding:25px 15px;
+    }
+
+    .test-header h1{
+        font-size:27px;
+    }
+
+    .question-card{
+        padding:20px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+
+    <div class="logo">
+        📝 <span>Library Management System</span>
+    </div>
+
+    <a href="{% url 'student_tests' %}?username={{ student.username }}"
+       class="back-btn">
+        ← Tests
+    </a>
+
+</header>
+
+
+<main class="main">
+
+    <div class="test-header">
+
+        <h1>📝 {{ test.title }}</h1>
+
+        <p>
+            Category: {{ test.category }}
+            • Questions: {{ questions|length }}
+        </p>
+
+    </div>
+
+
+    {% if questions %}
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        {% for question in questions %}
+
+        <div class="question-card">
+
+            <div class="question">
+                {{ forloop.counter }}. {{ question.question }}
+            </div>
+
+
+            <label class="option">
+                <input type="radio"
+                       name="question_{{ question.id }}"
+                       value="{{ question.option1 }}">
+                {{ question.option1 }}
+            </label>
+
+
+            <label class="option">
+                <input type="radio"
+                       name="question_{{ question.id }}"
+                       value="{{ question.option2 }}">
+                {{ question.option2 }}
+            </label>
+
+
+            <label class="option">
+                <input type="radio"
+                       name="question_{{ question.id }}"
+                       value="{{ question.option3 }}">
+                {{ question.option3 }}
+            </label>
+
+
+            <label class="option">
+                <input type="radio"
+                       name="question_{{ question.id }}"
+                       value="{{ question.option4 }}">
+                {{ question.option4 }}
+            </label>
+
+        </div>
+
+        {% endfor %}
+
+
+        <div class="submit-box">
+
+            <button type="submit" class="submit-btn">
+                Submit Test ✓
+            </button>
+
+        </div>
+
+    </form>
+
+    {% else %}
+
+    <div class="empty">
+        📝<br><br>
+        No questions are available for this test.
+    </div>
+
+    {% endif %}
+
+</main>
+
+
+
+
+</body>
+</html>

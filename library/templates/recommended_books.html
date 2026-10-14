@@ -1,0 +1,350 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Smart Books - Library Management System</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Constantia","Times New Roman",Georgia,serif;
+}
+
+body{
+    min-height:100vh;
+    background:
+        linear-gradient(rgba(6,25,45,.88),rgba(6,25,45,.88)),
+        url("{% static 'library.jpg.png' %}")
+        center center / cover fixed no-repeat;
+    color:white;
+}
+
+.header{
+    min-height:75px;
+    background:rgba(8,31,55,.97);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:15px 40px;
+    border-bottom:1px solid rgba(255,255,255,.15);
+}
+
+.logo{
+    color:#ffad00;
+    font-size:23px;
+    font-weight:bold;
+}
+
+.logo span{
+    color:white;
+}
+
+.back-btn{
+    text-decoration:none;
+    color:white;
+    background:#1769a8;
+    padding:9px 18px;
+    border-radius:20px;
+    font-size:14px;
+}
+
+.main{
+    max-width:1150px;
+    margin:auto;
+    padding:40px 25px;
+}
+
+.title{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.title h1{
+    color:#ffad00;
+    font-size:34px;
+    margin-bottom:8px;
+}
+
+.title p{
+    color:#c7d7e6;
+}
+
+.info{
+    background:rgba(20,55,85,.9);
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:15px;
+    padding:18px 22px;
+    margin-bottom:30px;
+    text-align:center;
+    color:#d6e5f2;
+}
+
+.info b{
+    color:#ffad00;
+}
+
+.book-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+}
+
+.book-card{
+    background:rgba(218,233,247,.96);
+    color:#17304d;
+    padding:25px;
+    border-radius:17px;
+    box-shadow:0 10px 30px rgba(0,0,0,.35);
+    position:relative;
+    overflow:hidden;
+    transition:.3s;
+}
+
+.book-card:hover{
+    transform:translateY(-6px);
+}
+
+.book-card::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:5px;
+    background:#ffad00;
+}
+
+.book-icon{
+    width:65px;
+    height:65px;
+    border-radius:50%;
+    background:#fff7df;
+    border:2px solid #ffad00;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:30px;
+    margin-bottom:15px;
+}
+
+.book-card h2{
+    font-size:21px;
+    margin-bottom:10px;
+}
+
+.book-card p{
+    color:#60758b;
+    font-size:14px;
+    line-height:1.7;
+}
+
+.category{
+    display:inline-block;
+    margin-top:12px;
+    background:#174c72;
+    color:#a9dcff;
+    padding:6px 12px;
+    border-radius:15px;
+    font-size:12px;
+}
+
+.quantity{
+    display:inline-block;
+    margin-top:10px;
+    margin-left:5px;
+    background:#168a61;
+    color:white;
+    padding:6px 12px;
+    border-radius:15px;
+    font-size:12px;
+}
+
+.empty{
+    text-align:center;
+    background:rgba(7,29,51,.9);
+    border-radius:18px;
+    padding:50px;
+    color:#b8c9d8;
+    font-size:18px;
+}
+
+.buttons{
+    text-align:center;
+    margin-top:30px;
+}
+
+.btn{
+    display:inline-block;
+    text-decoration:none;
+    color:white;
+    background:#1769a8;
+    padding:11px 23px;
+    border-radius:22px;
+    font-size:14px;
+    font-weight:bold;
+}
+
+.btn:hover{
+    background:#0e568b;
+}
+
+.footer{
+    text-align:center;
+    padding:25px;
+    color:#8297aa;
+    font-size:13px;
+}
+
+@media(max-width:850px){
+    .book-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:600px){
+
+    .header{
+        padding:15px 18px;
+    }
+
+    .logo{
+        font-size:18px;
+    }
+
+    .main{
+        padding:25px 15px;
+    }
+
+    .book-grid{
+        grid-template-columns:1fr;
+    }
+
+    .title h1{
+        font-size:28px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+
+    <div class="logo">
+        📚 <span>Library Management System</span>
+    </div>
+
+    <a href="{% url 'student_dashboard' %}?username={{ student.username }}"
+       class="back-btn">
+        ← Dashboard
+    </a>
+
+</header>
+
+
+<main class="main">
+
+    <div class="title">
+        <h1>🤖 Smart Book Recommendations</h1>
+        <p>Books selected according to your test performance</p>
+    </div>
+
+
+    {% if student %}
+
+    {% if recommended %}
+
+    <div class="info">
+        📚 These books are recommended to help you
+        <b>learn, practice and improve.</b>
+    </div>
+
+    <div class="book-grid">
+
+        {% for book in recommended %}
+
+        <div class="book-card">
+
+            <div class="book-icon">
+                📖
+            </div>
+
+            <h2>{{ book.title }}</h2>
+
+            <p>
+                <b>Author:</b> {{ book.author }}
+            </p>
+
+            <p>
+                <b>Category:</b> {{ book.category }}
+            </p>
+
+            <p>
+                <b>ISBN:</b> {{ book.isbn }}
+            </p>
+
+            <p>
+                <b>Description:</b>
+                {{ book.description|default:"No description available." }}
+            </p>
+
+            <span class="category">
+                {{ book.category }}
+            </span>
+
+            <span class="quantity">
+                Available: {{ book.quantity }}
+            </span>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+    {% else %}
+
+    <div class="empty">
+
+        🤖<br><br>
+
+        No recommendations available yet.<br><br>
+
+        Complete a test to get smart book recommendations.
+
+    </div>
+
+    {% endif %}
+
+    {% else %}
+
+    <div class="empty">
+        Student information not found.
+    </div>
+
+    {% endif %}
+
+
+    <div class="buttons">
+
+        <a href="{% url 'student_tests' %}?username={{ student.username }}"
+           class="btn">
+            📝 Take Another Test
+        </a>
+
+    </div>
+
+</main>
+
+
+{% comment %} <footer class="footer">
+    Library Management System • Smart Learning Portal
+</footer> {% endcomment %}
+
+</body>
+</html>

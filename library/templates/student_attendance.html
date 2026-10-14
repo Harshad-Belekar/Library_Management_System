@@ -1,0 +1,189 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>My Attendance - Library Management System</title>
+
+<link rel="stylesheet" href="{% static 'student_attendance.css' %}?v=2">
+
+</head>
+
+<body>
+
+
+<!-- HEADER -->
+
+<div class="header">
+
+    <h1>
+        📊 My Library Attendance
+    </h1>
+
+    <a
+        href="{% url 'student_dashboard' %}?username={{ student.username }}"
+        class="back"
+    >
+        ← Dashboard
+    </a>
+
+</div>
+
+
+<!-- MAIN -->
+
+<div class="container">
+
+
+    <!-- STUDENT INFO -->
+
+    <div class="student-box">
+
+        <h2>
+            👨‍🎓 {{ student.name }}
+        </h2>
+
+        <p>
+            Username: {{ student.username }}
+        </p>
+
+    </div>
+
+
+    <!-- ATTENDANCE SUMMARY -->
+
+    <div class="cards">
+
+
+        <div class="card">
+
+            <div class="card-icon">
+                📅
+            </div>
+
+            <h2>
+                {{ total_days }}
+            </h2>
+
+            <p>
+                Total Visits
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-icon">
+                ✅
+            </div>
+
+            <h2>
+                {{ present_days }}
+            </h2>
+
+            <p>
+                Present Days
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-icon">
+                📈
+            </div>
+
+            <h2>
+                {{ percentage }}%
+            </h2>
+
+            <p>
+                Attendance Percentage
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- ATTENDANCE HISTORY -->
+
+    <div class="table-box">
+
+        <h2>
+            📋 Attendance History
+        </h2>
+
+
+        {% if attendance %}
+
+        <table>
+
+            <tr>
+
+                <th>
+                    Date
+                </th>
+
+                <th>
+                    Check-in Time
+                </th>
+
+                <th>
+                    Status
+                </th>
+
+            </tr>
+
+
+            {% for record in attendance %}
+
+            <tr>
+
+                <td>
+                    {{ record.date }}
+                </td>
+
+                <td>
+                    {{ record.check_in|time:"h:i A" }}
+                </td>
+
+                <td class="present">
+                    ✓ {{ record.status }}
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+
+        {% else %}
+
+        <div class="empty">
+
+            📍 You have not marked attendance yet.
+
+        </div>
+
+        {% endif %}
+
+
+    </div>
+
+
+</div>
+
+
+</body>
+
+</html>

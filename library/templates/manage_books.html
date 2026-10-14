@@ -1,0 +1,249 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Manage Books - Library Management System</title>
+
+    <link rel="stylesheet" href="{% static 'manage_books.css' %}">
+
+</head>
+
+
+<body>
+
+
+<!-- HEADER -->
+
+<div class="header">
+
+    <div class="brand">
+
+        <div class="brand-icon">
+            📚
+        </div>
+
+        <div>
+
+            <h1>Manage Books</h1>
+
+            <p>
+                Add, update and manage library books
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <a
+        href="{% url 'admin_dashboard' %}"
+        class="back"
+    >
+        ← Dashboard
+    </a>
+
+</div>
+
+
+
+<!-- MAIN -->
+
+<div class="container">
+
+
+    <!-- TOP -->
+
+    <div class="top-card">
+
+        <div class="heading">
+
+            <div class="heading-icon">
+                📖
+            </div>
+
+            <div>
+
+                <h2>Library Books</h2>
+
+                <div class="count">
+
+                    Total Books:
+
+                    <strong>
+                        {{ books|length }}
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <a
+            href="{% url 'add_book' %}"
+            class="add-btn"
+        >
+            ＋ Add New Book
+        </a>
+
+    </div>
+
+
+
+    <!-- BOOK TABLE -->
+
+    <div class="table-card">
+
+        {% if books %}
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>ID</th>
+
+                    <th>Book Title</th>
+
+                    <th>Author</th>
+
+                    <th>Category</th>
+
+                    <th>ISBN</th>
+
+                    <th>Quantity</th>
+
+                    <th>Actions</th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+                {% for book in books %}
+
+                <tr>
+
+                    <td>
+                        {{ book.id }}
+                    </td>
+
+
+                    <td>
+
+                        <strong>
+                            {{ book.title }}
+                        </strong>
+
+                    </td>
+
+
+                    <td>
+                        {{ book.author }}
+                    </td>
+
+
+                    <td>
+
+                        <span class="category">
+                            {{ book.category }}
+                        </span>
+
+                    </td>
+
+
+                    <td>
+                        {{ book.isbn }}
+                    </td>
+
+
+                    <td>
+
+                        <span class="quantity">
+                            {{ book.quantity }}
+                        </span>
+
+                    </td>
+
+
+                    <td>
+
+                        <div class="actions">
+
+                            <a
+                                href="{% url 'edit_book' book.id %}"
+                                class="edit"
+                            >
+                                ✏ Edit
+                            </a>
+
+
+                            <a
+                                href="{% url 'delete_book' book.id %}"
+                                class="delete"
+                                onclick="return confirm('Delete this book?');"
+                            >
+                                🗑 Delete
+                            </a>
+
+                        </div>
+
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+
+        {% else %}
+
+
+        <div class="empty">
+
+            <div class="empty-icon">
+                📚
+            </div>
+
+            <h3>
+                No Books Available
+            </h3>
+
+            <p>
+                Start by adding your first book to the library.
+            </p>
+
+        </div>
+
+
+        {% endif %}
+
+    </div>
+
+
+    {% comment %} <div class="footer">
+
+        📚 Library Management System • Book Collection
+
+    </div> {% endcomment %}
+
+
+</div>
+
+
+</body>
+
+</html>

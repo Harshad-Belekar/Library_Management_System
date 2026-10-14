@@ -1,0 +1,152 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Admin Login</title>
+
+<link rel="stylesheet" href="{% static 'admin_login.css' %}">
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+    <!-- LEFT -->
+
+    <div class="left">
+
+        {% comment %}
+
+        <h1>
+            Admin Panel
+        </h1>
+
+        <div class="line">
+
+            Secure Access &nbsp; | &nbsp;
+            Manage &nbsp; | &nbsp;
+            Control
+
+        </div>
+
+        <p>
+            Your System, Our Priority
+        </p>
+
+        {% endcomment %}
+
+    </div>
+
+
+    <!-- LOGIN CARD -->
+
+    <div class="login-card">
+
+
+        <div class="admin-icon">
+            🛡️
+        </div>
+
+
+        <h2>
+            Admin Login
+        </h2>
+
+
+        <p class="subtitle">
+            Please sign in to your account
+        </p>
+
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+
+            <label>
+                Username
+            </label>
+
+
+            <div class="input-box">
+
+                <span>
+                    ♙
+                </span>
+
+                <input
+                    type="text"
+                    name="username"
+                    placeholder="Username"
+                    required
+                >
+
+            </div>
+
+
+            <label>
+                Password
+            </label>
+
+
+            <div class="input-box">
+
+                <span>
+                    🔒
+                </span>
+
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    required
+                >
+
+                <span class="eye">
+                    ◉
+                </span>
+
+            </div>
+
+
+            <button type="submit">
+                Login
+            </button>
+
+        </form>
+
+
+        {% if error %}
+
+        <div class="error">
+            {{ error }}
+        </div>
+
+        {% endif %}
+
+
+        <a href="/" class="back">
+            ← Back to Home
+        </a>
+
+
+    </div>
+
+
+</div>
+
+
+</body>
+
+</html>

@@ -1,0 +1,234 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Students - Library Management System</title>
+
+    <link rel="stylesheet" href="{% static 'students.css' %}">
+
+</head>
+
+
+<body>
+
+
+<!-- HEADER -->
+
+<div class="header">
+
+    <div class="brand">
+
+        <div class="brand-icon">
+            👨‍🎓
+        </div>
+
+        <div>
+
+            <h1>Registered Students</h1>
+
+            <p>
+                Manage students registered in the library
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <a
+        href="{% url 'admin_dashboard' %}"
+        class="back"
+    >
+        ← Dashboard
+    </a>
+
+</div>
+
+
+
+<!-- MAIN -->
+
+<div class="container">
+
+
+    <!-- TOP CARD -->
+
+    <div class="top-card">
+
+        <div class="heading">
+
+            <div class="heading-icon">
+                🎓
+            </div>
+
+            <div>
+
+                <h2>Student Management</h2>
+
+                <div class="count">
+
+                    Total Students:
+
+                    <strong>
+                        {{ students|length }}
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- STUDENT TABLE -->
+
+    <div class="table-card">
+
+        {% if students %}
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>ID</th>
+
+                    <th>Student</th>
+
+                    <th>Email</th>
+
+                    <th>Username</th>
+
+                    <th>Action</th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+                {% for student in students %}
+
+                <tr>
+
+
+                    <td>
+
+                        <span class="id">
+                            {{ student.id }}
+                        </span>
+
+                    </td>
+
+
+
+                    <td>
+
+                        <div class="student-info">
+
+                            <div class="student-icon">
+                                👨‍🎓
+                            </div>
+
+                            <div>
+
+                                <div class="student-name">
+                                    {{ student.name }}
+                                </div>
+
+                                <div class="student-username">
+                                    Student Account
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </td>
+
+
+
+                    <td>
+                        {{ student.email }}
+                    </td>
+
+
+
+                    <td>
+                        {{ student.username }}
+                    </td>
+
+
+
+                    <td>
+
+                        <a
+                            href="{% url 'delete_student' student.id %}"
+                            class="delete"
+                            onclick="return confirm('Delete this student?');"
+                        >
+                            🗑 Delete
+                        </a>
+
+                    </td>
+
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+
+        {% else %}
+
+
+        <div class="empty">
+
+            <div class="empty-icon">
+                👨‍🎓
+            </div>
+
+            <h3>
+                No Students Found
+            </h3>
+
+            <p>
+                No students have registered yet.
+            </p>
+
+        </div>
+
+
+        {% endif %}
+
+    </div>
+
+
+
+    {% comment %} <div class="footer">
+
+        📚 Library Management System • Student Management
+
+    </div> {% endcomment %}
+
+
+</div>
+
+
+</body>
+
+</html>

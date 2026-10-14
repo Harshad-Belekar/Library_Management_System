@@ -1,0 +1,404 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Issue & Return - Library Management System</title>
+
+    <link rel="stylesheet" href="{% static 'issue_return.css' %}">
+
+</head>
+
+
+<body>
+
+
+<!-- HEADER -->
+
+<div class="header">
+
+    <div class="brand">
+
+        <div class="icon">
+            📚
+        </div>
+
+        <div>
+
+            <h1>Issue & Return</h1>
+
+            <p>
+                Manage library book circulation
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <a
+        href="{% url 'admin_dashboard' %}"
+        class="back"
+    >
+        ← Dashboard
+    </a>
+
+</div>
+
+
+
+<!-- MAIN -->
+
+<div class="container">
+
+
+    <!-- ISSUE BOOK -->
+
+    <div class="issue-card">
+
+        <div class="title">
+
+            <div class="title-icon">
+                📖
+            </div>
+
+            <div>
+
+                <h2>
+                    Issue a Book
+                </h2>
+
+                <p>
+                    Select a student and available book
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+
+            <div class="form-grid">
+
+
+                <!-- STUDENT -->
+
+                <div class="field">
+
+                    <label>
+                        Select Student
+                    </label>
+
+                    <select
+                        name="student"
+                        required
+                    >
+
+                        <option value="">
+                            Choose student
+                        </option>
+
+                        {% for student in students %}
+
+                        <option value="{{ student.id }}">
+
+                            {{ student.name }}
+                            (@{{ student.username }})
+
+                        </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- BOOK -->
+
+                <div class="field">
+
+                    <label>
+                        Select Book
+                    </label>
+
+                    <select
+                        name="book"
+                        required
+                    >
+
+                        <option value="">
+                            Choose available book
+                        </option>
+
+                        {% for book in books %}
+
+                            {% if book.quantity > 0 %}
+
+                            <option value="{{ book.id }}">
+
+                                {{ book.title }}
+                                — {{ book.quantity }} available
+
+                            </option>
+
+                            {% endif %}
+
+                        {% endfor %}
+
+                    </select>
+
+                </div>
+
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="issue-btn"
+            >
+                📚 Issue Book
+            </button>
+
+        </form>
+
+    </div>
+
+
+
+    <!-- ISSUED BOOKS -->
+
+    <div class="table-card">
+
+        <div class="table-head">
+
+            <h2>
+                📋 Book Circulation
+            </h2>
+
+            <p>
+                Track issued and returned books
+            </p>
+
+        </div>
+
+
+        {% if issues %}
+
+        <div class="table-wrap">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Student
+                        </th>
+
+                        <th>
+                            Book
+                        </th>
+
+                        <th>
+                            Issue Date
+                        </th>
+
+                        <th>
+                            Return Date
+                        </th>
+
+                        <th>
+                            Status
+                        </th>
+
+                        <th>
+                            Action
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    {% for issue in issues %}
+
+                    <tr>
+
+
+                        <!-- STUDENT -->
+
+                        <td>
+
+                            <div class="user">
+
+                                <div class="avatar">
+                                    👨‍🎓
+                                </div>
+
+                                <div>
+
+                                    <div class="name">
+                                        {{ issue.student.name }}
+                                    </div>
+
+                                    <small>
+                                        @{{ issue.student.username }}
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+                        </td>
+
+
+
+                        <!-- BOOK -->
+
+                        <td>
+
+                            <span class="book">
+                                📖 {{ issue.book.title }}
+                            </span>
+
+                        </td>
+
+
+
+                        <!-- ISSUE DATE -->
+
+                        <td>
+                            {{ issue.issue_date|date:"d M Y" }}
+                        </td>
+
+
+
+                        <!-- RETURN DATE -->
+
+                        <td>
+
+                            {% if issue.return_date %}
+
+                                {{ issue.return_date|date:"d M Y" }}
+
+                            {% else %}
+
+                                —
+
+                            {% endif %}
+
+                        </td>
+
+
+
+                        <!-- STATUS -->
+
+                        <td>
+
+                            {% if issue.status == "Issued" %}
+
+                                <span class="status issued">
+                                    Issued
+                                </span>
+
+                            {% else %}
+
+                                <span class="status returned">
+                                    Returned
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+
+
+                        <!-- ACTION -->
+
+                        <td>
+
+                            {% if issue.status == "Issued" %}
+
+                                <a
+                                    href="{% url 'return_book' issue.id %}"
+                                    class="return-btn"
+                                >
+                                    ↩ Return Book
+                                </a>
+
+                            {% else %}
+
+                                <span class="done">
+                                    ✓ Completed
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        {% else %}
+
+
+        <div class="empty">
+
+            <div class="empty-icon">
+                📚
+            </div>
+
+            <h3>
+                No Books Issued
+            </h3>
+
+            <p>
+                Issued book records will appear here.
+            </p>
+
+        </div>
+
+
+        {% endif %}
+
+    </div>
+
+
+
+    {% comment %} <div class="footer">
+
+        📚 Library Management System • Book Circulation
+
+    </div> {% endcomment %}
+
+
+</div>
+
+
+</body>
+
+</html>

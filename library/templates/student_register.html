@@ -1,0 +1,207 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Student Registration - Library Management System</title>
+
+<link rel="stylesheet" href="{% static 'student_register.css' %}">
+
+</head>
+
+<body>
+
+<div class="register-box">
+
+
+    <!-- LEFT SIDE -->
+
+    <div class="left">
+
+        <div class="book">
+            📚
+        </div>
+
+        <h1>
+            Student Portal
+        </h1>
+
+        <h2>
+            Learn • Read • Grow
+        </h2>
+
+        <p>
+            Create your library account and
+            explore books, tests and personalized
+            learning resources.
+        </p>
+
+        <div class="features">
+
+            ✓ Explore Library Books<br>
+
+            ✓ Take Knowledge Tests<br>
+
+            ✓ Track Your Results<br>
+
+            ✓ Get Book Recommendations
+
+        </div>
+
+    </div>
+
+
+    <!-- RIGHT SIDE -->
+
+    <div class="right">
+
+        <div class="student-icon">
+            🎓
+        </div>
+
+        <h2>
+            Student Registration
+        </h2>
+
+        <div class="subtitle">
+            Create your library account
+        </div>
+
+
+        {% if error %}
+
+        <div class="error">
+            {{ error }}
+        </div>
+
+        {% endif %}
+
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label>
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        name="name"
+                        placeholder="Enter full name"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Username
+                    </label>
+
+                    <input
+                        type="text"
+                        name="username"
+                        placeholder="Choose username"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <label>
+                Email Address
+            </label>
+
+            <input
+                type="email"
+                name="email"
+                placeholder="Enter email address"
+                required
+            >
+
+
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label>
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        name="password"
+                        placeholder="Create password"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Confirm Password
+                    </label>
+
+                    <input
+                        type="password"
+                        name="confirm_password"
+                        placeholder="Confirm password"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="register-btn"
+            >
+                🎓 &nbsp; CREATE STUDENT ACCOUNT
+            </button>
+
+        </form>
+
+
+        <div class="links">
+
+            <a href="{% url 'student_login' %}">
+                Already have an account? Student Login
+            </a>
+
+            <div class="home">
+
+                <a href="{% url 'home' %}">
+                    ← Back to Home
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

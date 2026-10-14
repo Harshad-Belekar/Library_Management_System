@@ -1,0 +1,493 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Constantia","Times New Roman",Georgia,serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    min-height:100vh;
+
+    background:
+        linear-gradient(
+            rgba(6,25,45,.93),
+            rgba(6,25,45,.93)
+        ),
+        url("/static/library.jpg.png")
+        center center / cover fixed no-repeat;
+
+    color:white;
+}
+
+
+/* ================= HEADER ================= */
+
+.header{
+    height:75px;
+
+    background:rgba(8,31,55,.98);
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 40px;
+
+    border-bottom:1px solid rgba(255,255,255,.15);
+
+    box-shadow:0 4px 18px rgba(0,0,0,.35);
+
+    position:sticky;
+    top:0;
+
+    z-index:1000;
+}
+
+.logo{
+    color:#ffad00;
+
+    font-size:24px;
+
+    font-weight:bold;
+}
+
+.logo span{
+    color:white;
+}
+
+.back-btn{
+    text-decoration:none;
+
+    color:white;
+
+    background:#1769a8;
+
+    padding:9px 18px;
+
+    border-radius:20px;
+
+    font-size:14px;
+
+    transition:.3s;
+}
+
+.back-btn:hover{
+    background:#0e568b;
+}
+
+
+/* ================= MAIN ================= */
+
+.main{
+    max-width:1050px;
+
+    margin:auto;
+
+    padding:35px 25px 50px;
+}
+
+
+/* ================= BOOK HEADER ================= */
+
+.book-header{
+    background:rgba(218,233,247,.97);
+
+    color:#17304d;
+
+    border-radius:20px;
+
+    padding:30px;
+
+    margin-bottom:25px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.35);
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+.book-header::before{
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:6px;
+
+    background:#1599ef;
+}
+
+.book-icon{
+    width:75px;
+    height:75px;
+
+    border-radius:50%;
+
+    background:#e5f3ff;
+
+    border:2px solid #48aef0;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    font-size:35px;
+
+    margin-bottom:15px;
+}
+
+.book-header h1{
+    color:#17304d;
+
+    font-size:32px;
+
+    margin-bottom:8px;
+}
+
+.author{
+    color:#60758b;
+
+    font-size:16px;
+
+    margin-bottom:16px;
+}
+
+.book-info{
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:10px;
+}
+
+.info{
+    background:#174c72;
+
+    color:#9ed7ff;
+
+    padding:7px 13px;
+
+    border-radius:15px;
+
+    font-size:12px;
+}
+
+
+/* ================= STUDY CONTENT ================= */
+
+.study-container{
+    background:rgba(8,31,55,.96);
+
+    border:1px solid rgba(255,255,255,.12);
+
+    border-radius:20px;
+
+    padding:35px;
+
+    box-shadow:0 8px 28px rgba(0,0,0,.30);
+}
+
+.study-heading{
+    color:#ffad00;
+
+    font-size:28px;
+
+    margin-bottom:10px;
+}
+
+.study-subheading{
+    color:#a9bfd2;
+
+    font-size:15px;
+
+    line-height:1.7;
+
+    margin-bottom:30px;
+
+    border-bottom:1px solid rgba(255,255,255,.12);
+
+    padding-bottom:20px;
+}
+
+
+/* ================= CHAPTER ================= */
+
+.chapter{
+    margin-bottom:32px;
+
+    padding-bottom:25px;
+
+    border-bottom:1px solid rgba(255,255,255,.10);
+}
+
+.chapter:last-child{
+    border-bottom:none;
+}
+
+.chapter h2{
+    color:#58b9f5;
+
+    font-size:22px;
+
+    margin-bottom:13px;
+}
+
+.chapter h3{
+    color:#ffca55;
+
+    font-size:17px;
+
+    margin-top:18px;
+
+    margin-bottom:8px;
+}
+
+.chapter p{
+    color:#d1deea;
+
+    font-size:15px;
+
+    line-height:1.9;
+
+    margin-bottom:10px;
+}
+
+.chapter ul{
+    margin:8px 0 10px 25px;
+
+    color:#d1deea;
+}
+
+.chapter li{
+    font-size:15px;
+
+    line-height:1.9;
+
+    margin-bottom:3px;
+}
+
+
+/* ================= NOTE ================= */
+
+.note{
+    background:rgba(21,153,239,.10);
+
+    border-left:4px solid #1599ef;
+
+    padding:16px 18px;
+
+    margin-top:15px;
+
+    border-radius:8px;
+}
+
+.note strong{
+    color:#58b9f5;
+}
+
+.note p{
+    margin:5px 0 0;
+
+    font-size:14px;
+}
+
+
+/* ================= EXAMPLE ================= */
+
+.example{
+    background:rgba(255,173,0,.08);
+
+    border-left:4px solid #ffad00;
+
+    padding:16px 18px;
+
+    margin-top:15px;
+
+    border-radius:8px;
+}
+
+.example strong{
+    color:#ffca55;
+}
+
+.example p{
+    margin:5px 0 0;
+
+    font-size:14px;
+}
+
+
+/* ================= SUBJECT BADGE ================= */
+
+.subject-badge{
+    display:inline-block;
+
+    background:#168a61;
+
+    color:white;
+
+    padding:7px 14px;
+
+    border-radius:20px;
+
+    font-size:12px;
+
+    margin-bottom:20px;
+}
+
+
+/* ================= TEST SECTION ================= */
+
+.test-section{
+    margin-top:30px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(23,105,168,.30),
+            rgba(8,31,55,.98)
+        );
+
+    border:1px solid rgba(72,174,240,.35);
+
+    border-radius:20px;
+
+    padding:30px;
+
+    text-align:center;
+}
+
+.test-section h2{
+    color:#ffad00;
+
+    font-size:25px;
+
+    margin-bottom:10px;
+}
+
+.test-section p{
+    color:#c7d7e6;
+
+    font-size:15px;
+
+    line-height:1.7;
+
+    margin-bottom:20px;
+}
+
+.test-info{
+    display:inline-block;
+
+    background:#174c72;
+
+    color:#9ed7ff;
+
+    padding:7px 14px;
+
+    border-radius:20px;
+
+    font-size:13px;
+
+    margin-bottom:20px;
+}
+
+.test-btn{
+    display:inline-block;
+
+    text-decoration:none;
+
+    background:#168a61;
+
+    color:white;
+
+    padding:12px 28px;
+
+    border-radius:25px;
+
+    font-size:15px;
+
+    font-weight:bold;
+
+    transition:.3s;
+}
+
+.test-btn:hover{
+    background:#106b4b;
+
+    transform:translateY(-2px);
+}
+
+
+/* ================= BOTTOM ================= */
+
+.bottom{
+    text-align:center;
+
+    margin-top:25px;
+}
+
+.books-btn{
+    display:inline-block;
+
+    text-decoration:none;
+
+    color:white;
+
+    background:#1769a8;
+
+    padding:11px 23px;
+
+    border-radius:22px;
+
+    font-size:14px;
+
+    transition:.3s;
+}
+
+.books-btn:hover{
+    background:#0e568b;
+}
+
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:700px){
+
+    .header{
+        padding:0 18px;
+    }
+
+    .logo{
+        font-size:18px;
+    }
+
+    .main{
+        padding:20px 15px 40px;
+    }
+
+    .study-container{
+        padding:23px;
+    }
+
+    .book-header{
+        padding:24px;
+    }
+
+    .book-header h1{
+        font-size:26px;
+    }
+
+    .study-heading{
+        font-size:24px;
+    }
+
+}

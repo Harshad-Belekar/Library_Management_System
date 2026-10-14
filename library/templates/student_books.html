@@ -1,0 +1,152 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Available Books - Library Management System</title>
+
+<link rel="stylesheet" href="{% static 'student_books.css' %}">
+
+</head>
+
+
+<body>
+
+
+<!-- HEADER -->
+
+<header class="header">
+
+    <div class="logo">
+        📚 <span>Library Management System</span>
+    </div>
+
+    <a
+        href="{% url 'student_dashboard' %}?username={{ student.username }}"
+        class="back-btn"
+    >
+        ← Dashboard
+    </a>
+
+</header>
+
+
+<!-- MAIN -->
+
+<main class="main">
+
+
+    <!-- TITLE -->
+
+    <div class="title-box">
+
+        <h1>
+            📖 Available Books
+        </h1>
+
+        <p>
+            Explore books available in the library
+        </p>
+
+    </div>
+
+
+    <!-- BOOKS -->
+
+    {% if books %}
+
+    <div class="book-grid">
+
+        {% for book in books %}
+
+        <!-- CLICKABLE BOOK -->
+
+        <a
+            href="{% url 'book_study' book.id %}?username={{ student.username }}"
+            class="book-link"
+        >
+
+            <div class="book-card">
+
+                <div class="book-icon">
+                    📘
+                </div>
+
+
+                <h2>
+                    {{ book.title }}
+                </h2>
+
+
+                <p>
+                    <b>Author:</b>
+                    {{ book.author }}
+                </p>
+
+
+                <p>
+                    <b>ISBN:</b>
+                    {{ book.isbn }}
+                </p>
+
+
+                <p>
+                    <b>Description:</b>
+                    {{ book.description|default:"No description available." }}
+                </p>
+
+
+                <span class="category">
+                    {{ book.category }}
+                </span>
+
+
+                <span class="quantity">
+                    Available: {{ book.quantity }}
+                </span>
+
+
+                <span class="study-text">
+                    📖 Click to Study Book →
+                </span>
+
+            </div>
+
+        </a>
+
+        {% endfor %}
+
+    </div>
+
+
+    {% else %}
+
+
+    <!-- NO BOOKS -->
+
+    <div class="empty">
+
+        📚
+
+        <br><br>
+
+        No books are currently available.
+
+    </div>
+
+
+    {% endif %}
+
+
+</main>
+
+
+</body>
+
+</html>

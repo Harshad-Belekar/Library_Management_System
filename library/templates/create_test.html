@@ -1,0 +1,202 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Create Test - Library Management System</title>
+
+    <link rel="stylesheet" href="{% static 'create_test.css' %}">
+
+</head>
+
+
+<body>
+
+
+<!-- HEADER -->
+
+<div class="header">
+
+    <div class="brand">
+
+        <div class="brand-icon">
+            📝
+        </div>
+
+        <div>
+
+            <h1>Create Test</h1>
+
+            <p>
+                Create a new test for library students
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <a
+        href="{% url 'admin_dashboard' %}"
+        class="back"
+    >
+        ← Dashboard
+    </a>
+
+</div>
+
+
+
+<!-- MAIN -->
+
+<div class="container">
+
+
+    <div class="form-card">
+
+
+        <div class="title">
+
+            <div class="title-icon">
+                📝
+            </div>
+
+            <h2>
+                Create New Test
+            </h2>
+
+            <p>
+                Enter the test details below
+            </p>
+
+        </div>
+
+
+        <div class="info">
+            💡 After creating the test, you can add questions from Manage Tests.
+        </div>
+
+
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+
+            <div class="field">
+
+                <label>
+                    Test Title
+                </label>
+
+                <input
+                    type="text"
+                    name="title"
+                    placeholder="e.g. Python Basics Test"
+                    required
+                >
+
+            </div>
+
+
+
+            <div class="row">
+
+
+                <div class="field">
+
+                    <label>
+                        Category
+                    </label>
+
+                    <input
+                        type="text"
+                        name="category"
+                        placeholder="e.g. Python"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        Total Questions
+                    </label>
+
+                    <input
+                        type="number"
+                        name="total_questions"
+                        min="1"
+                        value="5"
+                        placeholder="Enter number"
+                        required
+                    >
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="field">
+
+                <label>
+                    Test Description
+                </label>
+
+                <textarea
+                    name="description"
+                    placeholder="Enter test description..."
+                ></textarea>
+
+            </div>
+
+
+
+            <div class="buttons">
+
+                <button
+                    type="submit"
+                    class="create"
+                >
+                    ＋ Create Test
+                </button>
+
+
+                <a
+                    href="{% url 'admin_dashboard' %}"
+                    class="cancel"
+                >
+                    Cancel
+                </a>
+
+            </div>
+
+
+        </form>
+
+
+    </div>
+
+
+    {% comment %} <div class="footer">
+
+        📚 Library Management System • Test Management
+
+    </div> {% endcomment %}
+
+
+</div>
+
+
+</body>
+
+</html>

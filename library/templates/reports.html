@@ -1,0 +1,369 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Reports - Library Management System</title>
+
+    <link rel="stylesheet" href="{% static 'reports.css' %}">
+
+</head>
+
+
+<body>
+
+
+<!-- HEADER -->
+
+<div class="header">
+
+    <div class="brand">
+
+        <div class="icon">
+            📊
+        </div>
+
+        <div>
+
+            <h1>Library Reports</h1>
+
+            <p>
+                System overview and recent activity
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <a
+        href="{% url 'admin_dashboard' %}"
+        class="back"
+    >
+        ← Dashboard
+    </a>
+
+</div>
+
+
+
+<!-- MAIN -->
+
+<div class="container">
+
+
+    <!-- TITLE -->
+
+    <div class="page-title">
+
+        <h2>
+            📈 Library Management Overview
+        </h2>
+
+        <p>
+            Monitor books, students, tests and library activities.
+        </p>
+
+    </div>
+
+
+
+    <!-- STATISTICS -->
+
+    <div class="stats">
+
+
+        <div class="stat">
+
+            <div class="stat-icon">
+                📚
+            </div>
+
+            <div>
+
+                <h3>
+                    {{ total_books }}
+                </h3>
+
+                <p>
+                    Total Books
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-icon">
+                👨‍🎓
+            </div>
+
+            <div>
+
+                <h3>
+                    {{ total_students }}
+                </h3>
+
+                <p>
+                    Total Students
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-icon">
+                📝
+            </div>
+
+            <div>
+
+                <h3>
+                    {{ total_tests }}
+                </h3>
+
+                <p>
+                    Total Tests
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-icon">
+                📊
+            </div>
+
+            <div>
+
+                <h3>
+                    {{ total_results }}
+                </h3>
+
+                <p>
+                    Test Results
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-icon">
+                📖
+            </div>
+
+            <div>
+
+                <h3>
+                    {{ total_issued }}
+                </h3>
+
+                <p>
+                    Books Issued
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-icon">
+                ✓
+            </div>
+
+            <div>
+
+                <h3>
+                    {{ total_returned }}
+                </h3>
+
+                <p>
+                    Books Returned
+                </p>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- RECENT ACTIVITY -->
+
+    <div class="content-grid">
+
+
+        <!-- RECENT RESULTS -->
+
+        <div class="panel">
+
+            <div class="panel-head">
+
+                <h2>
+                    📊 Recent Test Results
+                </h2>
+
+                <p>
+                    Latest student performance
+                </p>
+
+            </div>
+
+
+            {% if recent_results %}
+
+                {% for result in recent_results %}
+
+                <div class="result">
+
+                    <div class="result-left">
+
+                        <div class="avatar">
+                            👨‍🎓
+                        </div>
+
+                        <div>
+
+                            <div class="name">
+                                {{ result.student.name }}
+                            </div>
+
+                            <div class="test">
+                                {{ result.test.title }}
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <span class="percent">
+                        {{ result.percentage }}%
+                    </span>
+
+                </div>
+
+                {% endfor %}
+
+            {% else %}
+
+                <div class="empty">
+                    No test results available.
+                </div>
+
+            {% endif %}
+
+        </div>
+
+
+
+        <!-- RECENT ISSUES -->
+
+        <div class="panel">
+
+            <div class="panel-head">
+
+                <h2>
+                    📚 Recent Book Activity
+                </h2>
+
+                <p>
+                    Latest issue and return records
+                </p>
+
+            </div>
+
+
+            {% if recent_issues %}
+
+                {% for issue in recent_issues %}
+
+                <div class="issue">
+
+                    <div class="issue-left">
+
+                        <div class="book-icon">
+                            📖
+                        </div>
+
+                        <div>
+
+                            <div class="book-name">
+                                {{ issue.book.title }}
+                            </div>
+
+                            <div class="student-name">
+                                {{ issue.student.name }}
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    {% if issue.status == "Issued" %}
+
+                        <span class="issue-status active">
+                            Issued
+                        </span>
+
+                    {% else %}
+
+                        <span class="issue-status complete">
+                            Returned
+                        </span>
+
+                    {% endif %}
+
+                </div>
+
+                {% endfor %}
+
+            {% else %}
+
+                <div class="empty">
+                    No book activity available.
+                </div>
+
+            {% endif %}
+
+        </div>
+
+
+    </div>
+
+
+{% comment %} 
+    <div class="footer">
+
+        📚 Library Management System • Reports & Analytics
+
+    </div>
+
+
+</div> {% endcomment %}
+
+
+</body>
+
+</html>

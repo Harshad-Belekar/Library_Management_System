@@ -1,0 +1,461 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Student Dashboard - Library Management System</title>
+
+<link rel="stylesheet" href="{% static 'student_dashboard.css' %}">
+
+</head>
+
+
+<body>
+
+
+<!-- ================= HEADER ================= -->
+
+<header class="header">
+
+    <div class="logo">
+        📚 <span>Library Management System</span>
+    </div>
+
+    <div class="user-box">
+
+        <div class="user-icon">
+            👨‍🎓
+        </div>
+
+        <div class="username">
+            {{ student.name|default:"Student" }}
+        </div>
+
+        <a href="{% url 'home' %}" class="logout-btn">
+            Logout
+        </a>
+
+    </div>
+
+</header>
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="main">
+
+
+    <!-- ================= WELCOME ================= -->
+
+    <section class="welcome">
+
+        <div>
+
+            <h1>
+                Welcome, {{ student.name|default:"Student" }} 👋
+            </h1>
+
+            <p>
+                Explore books, test your knowledge and improve your learning.
+            </p>
+
+        </div>
+
+        <div class="welcome-badge">
+            🎓 Student Portal
+        </div>
+
+    </section>
+
+
+    <!-- ================= MAIN CARDS ================= -->
+
+    <div class="cards">
+
+
+        <!-- BOOKS -->
+
+        <div class="card">
+
+            <div class="card-icon">
+                📚
+            </div>
+
+            <h3>
+                Browse Books
+            </h3>
+
+            <p>
+                Explore available books in our library.
+            </p>
+
+            <a
+                href="{% url 'student_books' %}?username={{ student.username }}"
+                class="btn"
+            >
+                View Books
+            </a>
+
+        </div>
+
+
+        <!-- TESTS -->
+
+        <div class="card">
+
+            <div class="card-icon">
+                📝
+            </div>
+
+            <h3>
+                Take Test
+            </h3>
+
+            <p>
+                Check your knowledge with available tests.
+            </p>
+
+            <a
+                href="{% url 'student_tests' %}?username={{ student.username }}"
+                class="btn"
+            >
+                Start Test
+            </a>
+
+        </div>
+
+
+        <!-- RESULTS -->
+
+        <div class="card">
+
+            <div class="card-icon">
+                🏆
+            </div>
+
+            <h3>
+                My Results
+            </h3>
+
+            <p>
+                View your previous test performance.
+            </p>
+
+            <a
+                href="{% url 'my_results' %}?username={{ student.username }}"
+                class="btn"
+            >
+                View Results
+            </a>
+
+        </div>
+
+
+        <!-- SMART BOOKS -->
+
+        <div class="card">
+
+            <div class="card-icon">
+                💡
+            </div>
+
+            <h3>
+                Smart Books
+            </h3>
+
+            <p>
+                Get books based on your test performance.
+            </p>
+
+            <a
+                href="{% url 'recommended_books' %}?username={{ student.username }}"
+                class="btn"
+            >
+                Discover
+            </a>
+
+        </div>
+
+
+        <!-- MARK ATTENDANCE -->
+
+        <div class="card">
+
+            <div class="card-icon">
+                📍
+            </div>
+
+            <h3>
+                Library Attendance
+            </h3>
+
+            <p>
+                Mark your library visit for today.
+            </p>
+
+            <a
+                href="{% url 'mark_attendance' %}?username={{ student.username }}"
+                class="btn"
+            >
+                Mark Present
+            </a>
+
+        </div>
+
+
+        <!-- MY ATTENDANCE -->
+
+        <div class="card">
+
+            <div class="card-icon">
+                📊
+            </div>
+
+            <h3>
+                My Attendance
+            </h3>
+
+            <p>
+                Check your attendance history and percentage.
+            </p>
+
+            <a
+                href="{% url 'student_attendance' %}?username={{ student.username }}"
+                class="btn"
+            >
+                View Attendance
+            </a>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- ================= AVAILABLE BOOKS ================= -->
+
+    <section class="section">
+
+        <div class="section-header">
+
+            <div class="section-title">
+                📖 Available Books
+            </div>
+
+            <a
+                class="view-link"
+                href="{% url 'student_books' %}?username={{ student.username }}"
+            >
+                View All →
+            </a>
+
+        </div>
+
+
+        {% if books %}
+
+        <div class="book-grid">
+
+            {% for book in books %}
+
+            <div class="book">
+
+                <div class="book-icon">
+                    📘
+                </div>
+
+                <h3>
+                    {{ book.title }}
+                </h3>
+
+                <p>
+                    <b>Author:</b> {{ book.author }}
+                </p>
+
+                <p>
+                    <b>Available:</b> {{ book.quantity }}
+                </p>
+
+                <span class="category">
+                    {{ book.category }}
+                </span>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+        {% else %}
+
+        <div class="empty">
+            📚 No books are currently available.
+        </div>
+
+        {% endif %}
+
+    </section>
+
+
+    <!-- ================= AVAILABLE TESTS ================= -->
+
+    <section class="section">
+
+        <div class="section-header">
+
+            <div class="section-title">
+                📝 Available Tests
+            </div>
+
+            <a
+                class="view-link"
+                href="{% url 'student_tests' %}?username={{ student.username }}"
+            >
+                View All →
+            </a>
+
+        </div>
+
+
+        {% if tests %}
+
+            {% for test in tests %}
+
+            <div class="test-row">
+
+                <div class="test-info">
+
+                    <h3>
+                        {{ test.title }}
+                    </h3>
+
+                    <p>
+                        {{ test.category }}
+                        &nbsp; • &nbsp;
+                        {{ test.total_questions }} Questions
+                    </p>
+
+                </div>
+
+                <a
+                    class="test-button"
+                    href="{% url 'take_test' test.id %}?username={{ student.username }}"
+                >
+                    Take Test
+                </a>
+
+            </div>
+
+            {% endfor %}
+
+        {% else %}
+
+        <div class="empty">
+            📝 No tests are currently available.
+        </div>
+
+        {% endif %}
+
+    </section>
+
+
+    <!-- ================= RECENT RESULTS ================= -->
+
+    <section class="section">
+
+        <div class="section-header">
+
+            <div class="section-title">
+                🏆 Recent Results
+            </div>
+
+            <a
+                class="view-link"
+                href="{% url 'my_results' %}?username={{ student.username }}"
+            >
+                View All →
+            </a>
+
+        </div>
+
+
+        {% if results %}
+
+            {% for result in results %}
+
+            <div class="result-row">
+
+                <div class="result-info">
+
+                    <strong>
+                        {{ result.test.title }}
+                    </strong>
+
+                    <small>
+                        Score:
+                        {{ result.score }}/{{ result.total_questions }}
+                    </small>
+
+                </div>
+
+                <div class="result-score">
+                    {{ result.percentage|floatformat:1 }}%
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        {% else %}
+
+        <div class="empty">
+            🏆 You have not taken any test yet.
+        </div>
+
+        {% endif %}
+
+    </section>
+
+
+    <!-- ================= SMART RECOMMENDATION ================= -->
+
+    <section class="section">
+
+        <div class="recommend">
+
+            <div class="recommend-text">
+
+                <h3>
+                    💡 Smart Book Recommendation
+                </h3>
+
+                <p>
+                    Complete a test and your performance will help
+                    the system recommend suitable books for your learning.
+                </p>
+
+            </div>
+
+            <a
+                href="{% url 'recommended_books' %}?username={{ student.username }}"
+                class="btn"
+            >
+                View Recommendations
+            </a>
+
+        </div>
+
+    </section>
+
+
+</main>
+
+</body>
+
+</html>

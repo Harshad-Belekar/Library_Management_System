@@ -1,0 +1,351 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Constantia","Times New Roman",Georgia,serif;
+}
+
+body{
+    min-height:100vh;
+
+    background:
+        linear-gradient(rgba(6,25,45,.86),rgba(6,25,45,.86)),
+        url("/static/library.jpg.png")
+        center center / cover fixed no-repeat;
+
+    color:white;
+}
+
+
+/* HEADER */
+
+.header{
+    height:75px;
+
+    background:rgba(8,31,55,.97);
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 40px;
+
+    border-bottom:1px solid rgba(255,255,255,.15);
+
+    box-shadow:0 4px 18px rgba(0,0,0,.35);
+}
+
+.logo{
+    color:#ffad00;
+    font-size:24px;
+    font-weight:bold;
+}
+
+.logo span{
+    color:white;
+}
+
+.back-btn{
+    text-decoration:none;
+
+    color:white;
+
+    background:#1769a8;
+
+    padding:9px 18px;
+
+    border-radius:20px;
+
+    font-size:14px;
+
+    transition:.3s;
+}
+
+.back-btn:hover{
+    background:#0e568b;
+}
+
+
+/* MAIN */
+
+.main{
+    max-width:1200px;
+
+    margin:auto;
+
+    padding:35px;
+}
+
+
+/* TITLE */
+
+.title-box{
+    text-align:center;
+
+    margin-bottom:30px;
+}
+
+.title-box h1{
+    color:#ffad00;
+
+    font-size:34px;
+
+    margin-bottom:8px;
+}
+
+.title-box p{
+    color:#c7d7e6;
+
+    font-size:16px;
+}
+
+
+/* BOOK GRID */
+
+.book-grid{
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:22px;
+}
+
+
+/* BOOK LINK */
+
+.book-link{
+    text-decoration:none;
+
+    color:inherit;
+
+    display:block;
+}
+
+
+/* BOOK CARD */
+
+.book-card{
+    background:rgba(218,233,247,.95);
+
+    color:#17304d;
+
+    padding:25px;
+
+    border-radius:17px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.35);
+
+    transition:.3s;
+
+    position:relative;
+
+    overflow:hidden;
+
+    cursor:pointer;
+
+    height:100%;
+}
+
+.book-card:hover{
+    transform:translateY(-6px);
+
+    box-shadow:
+        0 16px 35px rgba(0,0,0,.45),
+        0 0 18px rgba(21,153,239,.25);
+}
+
+.book-card::before{
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:5px;
+
+    background:#1599ef;
+}
+
+
+/* BOOK ICON */
+
+.book-icon{
+    width:65px;
+    height:65px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    margin-bottom:15px;
+
+    border-radius:50%;
+
+    background:#e5f3ff;
+
+    border:2px solid #48aef0;
+
+    font-size:30px;
+
+    transition:.3s;
+}
+
+.book-card:hover .book-icon{
+    transform:scale(1.05);
+}
+
+
+/* BOOK TITLE */
+
+.book-card h2{
+    font-size:21px;
+
+    margin-bottom:10px;
+
+    color:#17304d;
+}
+
+
+/* BOOK DETAILS */
+
+.book-card p{
+    font-size:14px;
+
+    line-height:1.7;
+
+    color:#60758b;
+
+    margin-bottom:3px;
+}
+
+
+/* CATEGORY */
+
+.category{
+    display:inline-block;
+
+    margin-top:12px;
+
+    padding:6px 12px;
+
+    border-radius:15px;
+
+    background:#174c72;
+
+    color:#9ed7ff;
+
+    font-size:12px;
+}
+
+
+/* QUANTITY */
+
+.quantity{
+    display:inline-block;
+
+    margin-top:10px;
+
+    margin-left:5px;
+
+    padding:6px 12px;
+
+    border-radius:15px;
+
+    background:#168a61;
+
+    color:white;
+
+    font-size:12px;
+}
+
+
+/* STUDY TEXT */
+
+.study-text{
+    display:block;
+
+    margin-top:16px;
+
+    color:#1769a8;
+
+    font-size:13px;
+
+    font-weight:bold;
+
+    border-top:1px solid rgba(23,48,77,.15);
+
+    padding-top:12px;
+}
+
+
+/* EMPTY */
+
+.empty{
+    text-align:center;
+
+    background:rgba(7,29,51,.9);
+
+    border:1px solid rgba(255,255,255,.15);
+
+    border-radius:18px;
+
+    padding:50px;
+
+    color:#b8c9d8;
+
+    font-size:18px;
+}
+
+
+/* FOOTER */
+
+.footer{
+    text-align:center;
+
+    padding:25px;
+
+    margin-top:20px;
+
+    color:#8297aa;
+
+    font-size:13px;
+}
+
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
+
+    .book-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+
+@media(max-width:600px){
+
+    .header{
+        padding:0 18px;
+    }
+
+    .logo{
+        font-size:18px;
+    }
+
+    .main{
+        padding:20px;
+    }
+
+    .book-grid{
+        grid-template-columns:1fr;
+    }
+
+    .title-box h1{
+        font-size:28px;
+    }
+
+}

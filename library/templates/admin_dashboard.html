@@ -1,0 +1,385 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Admin Dashboard - Library Management System</title>
+
+<link rel="stylesheet" href="{% static 'admin_dashboard.css' %}">
+
+</head>
+
+
+<body>
+
+
+<!-- ================= SIDEBAR ================= -->
+
+<div class="sidebar">
+
+    <div class="logo">
+        📚 LIBRARY MANAGEMENT SYSTEM
+    </div>
+
+
+    <div class="menu">
+
+        <a href="{% url 'admin_dashboard' %}">
+            🏠 Dashboard
+        </a>
+
+
+        <a href="{% url 'manage_books' %}">
+            📚 Manage Books
+        </a>
+
+
+        <a href="{% url 'students' %}">
+            👨‍🎓 Students
+        </a>
+
+
+        <a href="{% url 'student_analytics' %}">
+            📊 Student Analytics
+        </a>
+
+
+        <!-- ATTENDANCE -->
+
+        <a href="{% url 'attendance' %}">
+            📍 Attendance
+        </a>
+
+
+        <a href="{% url 'create_test' %}">
+            📝 Create Test
+        </a>
+
+
+        <a href="{% url 'manage_tests' %}">
+            📋 Manage Tests
+        </a>
+
+
+        <a href="{% url 'test_results' %}">
+            📊 Test Results
+        </a>
+
+
+        <a href="{% url 'issue_return' %}">
+            🔄 Issue / Return
+        </a>
+
+
+        <a href="{% url 'reports' %}">
+            📈 Reports
+        </a>
+
+    </div>
+
+</div>
+
+
+<!-- ================= MAIN ================= -->
+
+<div class="main">
+
+
+    <!-- HEADER -->
+
+    <div class="header">
+
+        <div>
+
+            <h1>
+                Welcome Harshad Belekar
+            </h1>
+
+            <p>
+                Manage your Library Management System.
+            </p>
+
+        </div>
+
+
+        <div class="admin">
+            👨‍💼 Harshad Belekar
+        </div>
+
+    </div>
+
+
+    <!-- ================= CARDS ================= -->
+
+    <div class="cards">
+
+
+        <!-- MANAGE BOOKS -->
+
+        <div class="card">
+
+            <div class="icon">
+                📚
+            </div>
+
+            <h2>
+                Manage Books
+            </h2>
+
+            <p>
+                Add, update and remove books
+                from the library.
+            </p>
+
+            <a
+                href="{% url 'manage_books' %}"
+                class="btn"
+            >
+                Manage
+            </a>
+
+        </div>
+
+
+        <!-- STUDENTS -->
+
+        <div class="card">
+
+            <div class="icon">
+                👨‍🎓
+            </div>
+
+            <h2>
+                Students
+            </h2>
+
+            <p>
+                View and manage registered
+                library students.
+            </p>
+
+            <a
+                href="{% url 'students' %}"
+                class="btn"
+            >
+                View Students
+            </a>
+
+        </div>
+
+
+        <!-- STUDENT ANALYTICS -->
+
+        <div class="card">
+
+            <div class="icon">
+                📊
+            </div>
+
+            <h2>
+                Student Analytics
+            </h2>
+
+            <p>
+                View student performance,
+                test results and library activity.
+            </p>
+
+            <a
+                href="{% url 'student_analytics' %}"
+                class="btn"
+            >
+                View Analytics
+            </a>
+
+        </div>
+
+
+        <!-- ATTENDANCE -->
+
+        <div class="card">
+
+            <div class="icon">
+                📍
+            </div>
+
+            <h2>
+                Attendance
+            </h2>
+
+            <p>
+                Track student library visits,
+                presence and attendance.
+            </p>
+
+            <a
+                href="{% url 'attendance' %}"
+                class="btn"
+            >
+                View Attendance
+            </a>
+
+        </div>
+
+
+        <!-- CREATE TEST -->
+
+        <div class="card">
+
+            <div class="icon">
+                📝
+            </div>
+
+            <h2>
+                Create Test
+            </h2>
+
+            <p>
+                Create tests and add questions
+                for students.
+            </p>
+
+            <a
+                href="{% url 'create_test' %}"
+                class="btn"
+            >
+                Create Test
+            </a>
+
+        </div>
+
+
+        <!-- MANAGE TESTS -->
+
+        <div class="card">
+
+            <div class="icon">
+                📋
+            </div>
+
+            <h2>
+                Manage Tests
+            </h2>
+
+            <p>
+                View tests and add or manage
+                questions for students.
+            </p>
+
+            <a
+                href="{% url 'manage_tests' %}"
+                class="btn"
+            >
+                Manage Tests
+            </a>
+
+        </div>
+
+
+        <!-- TEST RESULTS -->
+
+        <div class="card">
+
+            <div class="icon">
+                📊
+            </div>
+
+            <h2>
+                Test Results
+            </h2>
+
+            <p>
+                Check student test results
+                and performance.
+            </p>
+
+            <a
+                href="{% url 'test_results' %}"
+                class="btn"
+            >
+                View Results
+            </a>
+
+        </div>
+
+
+        <!-- ISSUE RETURN -->
+
+        <div class="card">
+
+            <div class="icon">
+                🔄
+            </div>
+
+            <h2>
+                Issue / Return
+            </h2>
+
+            <p>
+                Manage book issue and
+                return records.
+            </p>
+
+            <a
+                href="{% url 'issue_return' %}"
+                class="btn"
+            >
+                Manage
+            </a>
+
+        </div>
+
+
+        <!-- REPORTS -->
+
+        <div class="card">
+
+            <div class="icon">
+                📈
+            </div>
+
+            <h2>
+                Reports
+            </h2>
+
+            <p>
+                View library activity and
+                student reports.
+            </p>
+
+            <a
+                href="{% url 'reports' %}"
+                class="btn"
+            >
+                View Reports
+            </a>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- ================= LOGOUT ================= -->
+
+    <div class="logout">
+
+        <a href="{% url 'home' %}">
+            ← Logout
+        </a>
+
+    </div>
+
+
+</div>
+
+
+</body>
+
+</html>

@@ -1,0 +1,179 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Attendance - Library Management System</title>
+
+    <link rel="stylesheet" href="{% static 'attendance.css' %}">
+</head>
+
+<body>
+
+    <!-- BACKGROUND IMAGE -->
+    <img
+        src="{% static 'library.jpg.png' %}"
+        class="attendance-bg"
+        alt="Library Background"
+    >
+
+    <!-- DARK OVERLAY -->
+    <div class="attendance-overlay"></div>
+
+
+    <div class="header">
+
+        <h1>📍 Library Attendance</h1>
+
+        <a href="{% url 'admin_dashboard' %}" class="back">
+            ← Dashboard
+        </a>
+
+    </div>
+
+
+    <div class="container">
+
+        <!-- DATE FILTER -->
+
+        <div class="filter">
+
+            <form method="get">
+
+                <label>Select Date:</label>
+
+                <input
+                    type="date"
+                    name="date"
+                    value="{{ attendance_date }}"
+                >
+
+                <button type="submit">
+                    View Attendance
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <!-- ATTENDANCE SUMMARY -->
+
+        <div class="cards">
+
+            <div class="card">
+
+                <h2>{{ total_students }}</h2>
+
+                <p>Total Students</p>
+
+            </div>
+
+
+            <div class="card">
+
+                <h2>{{ present_students }}</h2>
+
+                <p>Present Today</p>
+
+            </div>
+
+
+            <div class="card">
+
+                <h2>{{ absent_students }}</h2>
+
+                <p>Absent Today</p>
+
+            </div>
+
+
+            <div class="card">
+
+                <h2>{{ percentage }}%</h2>
+
+                <p>Attendance Percentage</p>
+
+            </div>
+
+        </div>
+
+
+        <!-- ATTENDANCE TABLE -->
+
+        <div class="table-box">
+
+            <h2>
+                Attendance Records
+            </h2>
+
+            {% if records %}
+
+            <table>
+
+                <tr>
+
+                    <th>Student Name</th>
+
+                    <th>Username</th>
+
+                    <th>Date</th>
+
+                    <th>Check-in Time</th>
+
+                    <th>Status</th>
+
+                </tr>
+
+
+                {% for record in records %}
+
+                <tr>
+
+                    <td>
+                        {{ record.student.name }}
+                    </td>
+
+                    <td>
+                        {{ record.student.username }}
+                    </td>
+
+                    <td>
+                        {{ record.date }}
+                    </td>
+
+                    <td>
+                        {{ record.check_in|time:"h:i A" }}
+                    </td>
+
+                    <td class="present">
+                        ✓ {{ record.status }}
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </table>
+
+            {% else %}
+
+            <div class="empty">
+
+                No attendance records found for this date.
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

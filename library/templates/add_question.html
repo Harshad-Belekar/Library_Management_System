@@ -1,0 +1,274 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Add Question - Library Management System</title>
+
+    <link rel="stylesheet" href="{% static 'add_question.css' %}">
+
+</head>
+
+
+<body>
+
+
+<!-- HEADER -->
+
+<div class="header">
+
+    <div class="brand">
+
+        <div class="icon">
+            ❓
+        </div>
+
+        <div>
+
+            <h1>Add Question</h1>
+
+            <p>
+                Create a question for student assessment
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <a
+        href="{% url 'manage_tests' %}"
+        class="back"
+    >
+        ← Manage Tests
+    </a>
+
+</div>
+
+
+
+<!-- MAIN -->
+
+<div class="container">
+
+
+    <!-- TEST INFORMATION -->
+
+    <div class="test-info">
+
+        <h2>
+            {{ test.title }}
+        </h2>
+
+        <p>
+            Add a multiple-choice question to this test.
+        </p>
+
+        <span class="category">
+            📚 {{ test.category }}
+        </span>
+
+    </div>
+
+
+
+    <!-- FORM -->
+
+    <div class="form-card">
+
+        <div class="form-title">
+            📝 Question Details
+        </div>
+
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+
+            <!-- QUESTION -->
+
+            <div class="field">
+
+                <label>
+                    Question
+                </label>
+
+                <textarea
+                    name="question"
+                    placeholder="Enter your question here..."
+                    required
+                ></textarea>
+
+            </div>
+
+
+
+            <!-- OPTIONS -->
+
+            <div class="options-title">
+                🔘 Answer Options
+            </div>
+
+
+            <div class="option-grid">
+
+
+                <div class="field">
+
+                    <label>
+                        Option 1
+                    </label>
+
+                    <input
+                        type="text"
+                        name="option1"
+                        placeholder="Enter option 1"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        Option 2
+                    </label>
+
+                    <input
+                        type="text"
+                        name="option2"
+                        placeholder="Enter option 2"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        Option 3
+                    </label>
+
+                    <input
+                        type="text"
+                        name="option3"
+                        placeholder="Enter option 3"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        Option 4
+                    </label>
+
+                    <input
+                        type="text"
+                        name="option4"
+                        placeholder="Enter option 4"
+                        required
+                    >
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- CORRECT ANSWER -->
+
+            <div class="correct-box">
+
+                <div class="field">
+
+                    <label>
+                        Correct Answer
+                    </label>
+
+                    <select
+                        name="correct_answer"
+                        required
+                    >
+
+                        <option value="">
+                            Select correct option
+                        </option>
+
+                        <option value="option1">
+                            Option 1
+                        </option>
+
+                        <option value="option2">
+                            Option 2
+                        </option>
+
+                        <option value="option3">
+                            Option 3
+                        </option>
+
+                        <option value="option4">
+                            Option 4
+                        </option>
+
+                    </select>
+
+                    <div class="hint">
+                        Select which option is the correct answer.
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- BUTTONS -->
+
+            <div class="buttons">
+
+                <button
+                    type="submit"
+                    class="btn save"
+                >
+                    ✓ Save Question
+                </button>
+
+
+                <a
+                    href="{% url 'manage_tests' %}"
+                    class="btn cancel"
+                >
+                    Cancel
+                </a>
+
+            </div>
+
+
+        </form>
+
+    </div>
+
+
+    <div class="footer">
+        📚 Library Management System • Question Management
+    </div>
+
+
+</div>
+
+
+</body>
+
+</html>

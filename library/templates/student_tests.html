@@ -1,0 +1,95 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Available Tests - Library Management System</title>
+
+<link rel="stylesheet" href="{% static 'student_test.css' %}">
+</head>
+
+<body>
+
+<header class="header">
+
+    <div class="logo">
+        📝 <span>Library Management System</span>
+    </div>
+
+    <a href="{% url 'student_dashboard' %}?username={{ student.username }}"
+       class="back-btn">
+        ← Dashboard
+    </a>
+
+</header>
+
+
+<main class="main">
+
+    <div class="title">
+        <h1>📝 Available Tests</h1>
+        <p>Test your knowledge and improve your learning</p>
+    </div>
+
+
+    {% if tests %}
+
+    <div class="test-grid">
+
+        {% for test in tests %}
+
+        <div class="test-card">
+
+            <div class="icon">📚</div>
+
+            <h2>{{ test.title }}</h2>
+
+            <p>
+                {{ test.description|default:"Test your knowledge with this assessment." }}
+            </p>
+
+            <div class="info">
+
+                <span class="badge">
+                    Category: {{ test.category }}
+                </span>
+
+                <span class="badge">
+                    Questions: {{ test.total_questions }}
+                </span>
+
+            </div>
+
+            <a href="{% url 'take_test' test.id %}?username={{ student.username }}"
+               class="start-btn">
+                Start Test →
+            </a>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+    {% else %}
+
+    <div class="empty">
+        📝<br><br>
+        No tests are currently available.
+    </div>
+
+    {% endif %}
+
+</main>
+
+
+{% comment %}
+<footer class="footer">
+    Library Management System • Student Learning Portal
+</footer>
+{% endcomment %}
+
+</body>
+</html>

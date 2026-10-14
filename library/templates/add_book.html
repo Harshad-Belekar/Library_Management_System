@@ -1,0 +1,238 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Add Book - Library Management System</title>
+
+    <link rel="stylesheet" href="{% static 'add_book.css' %}">
+
+</head>
+
+
+<body>
+
+
+<!-- HEADER -->
+
+<div class="header">
+
+    <div class="brand">
+
+        <div class="brand-icon">
+            📚
+        </div>
+
+        <div>
+
+            <h1>Add New Book</h1>
+
+            <p>
+                Add a new book to the library collection
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <a
+        href="{% url 'manage_books' %}"
+        class="back"
+    >
+        ← Manage Books
+    </a>
+
+</div>
+
+
+
+<!-- MAIN -->
+
+<div class="container">
+
+
+    <div class="form-card">
+
+
+        <div class="title">
+
+            <div class="title-icon">
+                📖
+            </div>
+
+            <h2>
+                Add New Book
+            </h2>
+
+            <p>
+                Enter the book details below
+            </p>
+
+        </div>
+
+
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+
+            <div class="row">
+
+
+                <div class="field">
+
+                    <label>
+                        Book Title
+                    </label>
+
+                    <input
+                        type="text"
+                        name="title"
+                        placeholder="Enter book title"
+                        required
+                    >
+
+                </div>
+
+
+
+                <div class="field">
+
+                    <label>
+                        Author
+                    </label>
+
+                    <input
+                        type="text"
+                        name="author"
+                        placeholder="Enter author name"
+                        required
+                    >
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="row">
+
+
+                <div class="field">
+
+                    <label>
+                        Category
+                    </label>
+
+                    <input
+                        type="text"
+                        name="category"
+                        placeholder="e.g. Programming"
+                        required
+                    >
+
+                </div>
+
+
+
+                <div class="field">
+
+                    <label>
+                        ISBN
+                    </label>
+
+                    <input
+                        type="text"
+                        name="isbn"
+                        placeholder="Enter ISBN number"
+                        required
+                    >
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="field">
+
+                <label>
+                    Quantity
+                </label>
+
+                <input
+                    type="number"
+                    name="quantity"
+                    min="1"
+                    value="1"
+                    placeholder="Enter quantity"
+                    required
+                >
+
+            </div>
+
+
+
+            <div class="field">
+
+                <label>
+                    Description
+                </label>
+
+                <textarea
+                    name="description"
+                    placeholder="Enter book description..."
+                ></textarea>
+
+            </div>
+
+
+
+            <div class="buttons">
+
+                <button
+                    type="submit"
+                    class="save"
+                >
+                    ＋ Add Book
+                </button>
+
+
+                <a
+                    href="{% url 'manage_books' %}"
+                    class="cancel"
+                >
+                    Cancel
+                </a>
+
+            </div>
+
+
+        </form>
+
+
+    </div>
+
+
+    <div class="footer">
+
+        📚 Library Management System • Manage Your Knowledge
+
+    </div>
+
+
+</div>
+
+
+</body>
+
+</html>

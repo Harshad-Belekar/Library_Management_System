@@ -1,0 +1,283 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>My Results - Library Management System</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Constantia","Times New Roman",Georgia,serif;
+}
+
+body{
+    min-height:100vh;
+    background:
+        linear-gradient(rgba(6,25,45,.88),rgba(6,25,45,.88)),
+        url("{% static 'library.jpg.png' %}")
+        center center / cover fixed no-repeat;
+    color:white;
+}
+
+.header{
+    height:75px;
+    background:rgba(8,31,55,.97);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 40px;
+    border-bottom:1px solid rgba(255,255,255,.15);
+}
+
+.logo{
+    color:#ffad00;
+    font-size:23px;
+    font-weight:bold;
+}
+
+.logo span{
+    color:white;
+}
+
+.back-btn{
+    text-decoration:none;
+    color:white;
+    background:#1769a8;
+    padding:9px 18px;
+    border-radius:20px;
+    font-size:14px;
+}
+
+.main{
+    max-width:1100px;
+    margin:auto;
+    padding:40px 25px;
+}
+
+.title{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.title h1{
+    color:#ffad00;
+    font-size:34px;
+    margin-bottom:8px;
+}
+
+.title p{
+    color:#c7d7e6;
+}
+
+.result-table{
+    width:100%;
+    border-collapse:collapse;
+    background:rgba(218,233,247,.96);
+    color:#17304d;
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 12px 30px rgba(0,0,0,.4);
+}
+
+.result-table th{
+    background:#173b5f;
+    color:white;
+    padding:15px;
+    text-align:left;
+    font-size:14px;
+}
+
+.result-table td{
+    padding:15px;
+    border-bottom:1px solid #d5e0e8;
+    font-size:14px;
+}
+
+.result-table tr:last-child td{
+    border-bottom:none;
+}
+
+.result-table tr:hover{
+    background:#edf6fc;
+}
+
+.score{
+    font-weight:bold;
+    color:#1769a8;
+}
+
+.percentage{
+    font-weight:bold;
+    color:#168a61;
+}
+
+.date{
+    color:#60758b;
+}
+
+.empty{
+    text-align:center;
+    background:rgba(7,29,51,.9);
+    border-radius:18px;
+    padding:50px;
+    color:#b8c9d8;
+    font-size:18px;
+}
+
+.btn{
+    display:inline-block;
+    margin-top:25px;
+    text-decoration:none;
+    color:white;
+    background:#1769a8;
+    padding:11px 23px;
+    border-radius:22px;
+    font-size:14px;
+    font-weight:bold;
+}
+
+.btn:hover{
+    background:#0e568b;
+}
+
+.footer{
+    text-align:center;
+    padding:25px;
+    color:#8297aa;
+    font-size:13px;
+}
+
+@media(max-width:750px){
+
+    .header{
+        padding:0 18px;
+    }
+
+    .logo{
+        font-size:18px;
+    }
+
+    .main{
+        padding:25px 12px;
+        overflow-x:auto;
+    }
+
+    .result-table{
+        min-width:700px;
+    }
+
+    .title h1{
+        font-size:28px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+
+    <div class="logo">
+        📚 <span>Library Management System</span>
+    </div>
+
+    <a href="{% url 'student_dashboard' %}?username={{ student.username }}"
+       class="back-btn">
+        ← Dashboard
+    </a>
+
+</header>
+
+
+<main class="main">
+
+    <div class="title">
+        <h1>📊 My Results</h1>
+        <p>View your complete test performance</p>
+    </div>
+
+
+    {% if results %}
+
+    <table class="result-table">
+
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Test</th>
+                <th>Category</th>
+                <th>Score</th>
+                <th>Percentage</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            {% for result in results %}
+
+            <tr>
+
+                <td>{{ forloop.counter }}</td>
+
+                <td>
+                    <b>{{ result.test.title }}</b>
+                </td>
+
+                <td>
+                    {{ result.test.category }}
+                </td>
+
+                <td class="score">
+                    {{ result.score }}/{{ result.total_questions }}
+                </td>
+
+                <td class="percentage">
+                    {{ result.percentage|floatformat:1 }}%
+                </td>
+
+                <td class="date">
+                    {{ result.created_at|date:"d M Y" }}
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+    {% else %}
+
+    <div class="empty">
+        📊<br><br>
+        You have not completed any test yet.
+    </div>
+
+    {% endif %}
+
+
+    <div style="text-align:center;">
+
+        <a href="{% url 'student_tests' %}?username={{ student.username }}"
+           class="btn">
+            📝 Take a Test
+        </a>
+
+    </div>
+
+</main>
+
+
+{% comment %} <footer class="footer">
+    Library Management System • Student Learning Portal
+</footer> {% endcomment %}
+
+</body>
+</html>

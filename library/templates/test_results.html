@@ -1,0 +1,283 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Test Results - Library Management System</title>
+
+    <link rel="stylesheet" href="{% static 'test_results.css' %}">
+
+</head>
+
+
+<body>
+
+
+<!-- HEADER -->
+
+<div class="header">
+
+    <div class="brand">
+
+        <div class="icon">
+            📊
+        </div>
+
+        <div>
+
+            <h1>Test Results</h1>
+
+            <p>
+                View student test performance
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <a
+        href="{% url 'admin_dashboard' %}"
+        class="back"
+    >
+        ← Dashboard
+    </a>
+
+</div>
+
+
+
+<!-- MAIN -->
+
+<div class="container">
+
+
+    <!-- TOP -->
+
+    <div class="top-card">
+
+        <div class="heading">
+
+            <div class="heading-icon">
+                📊
+            </div>
+
+            <div>
+
+                <h2>Student Results</h2>
+
+                <div class="count">
+
+                    Total Results:
+
+                    <strong>
+                        {{ results|length }}
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- RESULTS -->
+
+    <div class="table-card">
+
+        {% if results %}
+
+        <div class="table-wrap">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Student
+                        </th>
+
+                        <th>
+                            Test
+                        </th>
+
+                        <th>
+                            Score
+                        </th>
+
+                        <th>
+                            Percentage
+                        </th>
+
+                        <th>
+                            Date
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    {% for result in results %}
+
+                    <tr>
+
+
+                        <!-- STUDENT -->
+
+                        <td>
+
+                            <div class="student">
+
+                                <div class="avatar">
+                                    👨‍🎓
+                                </div>
+
+                                <div>
+
+                                    <div class="student-name">
+
+                                        {{ result.student.name }}
+
+                                    </div>
+
+                                    <div class="username">
+
+                                        @{{ result.student.username }}
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </td>
+
+
+
+                        <!-- TEST -->
+
+                        <td>
+
+                            <div class="test-name">
+
+                                {{ result.test.title }}
+
+                            </div>
+
+                            <span class="category">
+
+                                {{ result.test.category }}
+
+                            </span>
+
+                        </td>
+
+
+
+                        <!-- SCORE -->
+
+                        <td>
+
+                            <span class="score">
+
+                                {{ result.score }}
+                                /
+                                {{ result.total_questions }}
+
+                            </span>
+
+                        </td>
+
+
+
+                        <!-- PERCENTAGE -->
+
+                        <td>
+
+                            <span class="percentage">
+
+                                {{ result.percentage }}%
+
+                            </span>
+
+                        </td>
+
+
+
+                        <!-- DATE -->
+
+                        <td>
+
+                            <span class="date">
+
+                                {{ result.created_at|date:"d M Y, h:i A" }}
+
+                            </span>
+
+                        </td>
+
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        {% else %}
+
+
+        <!-- EMPTY -->
+
+        <div class="empty">
+
+            <div class="empty-icon">
+                📊
+            </div>
+
+            <h3>
+                No Results Available
+            </h3>
+
+            <p>
+                Student test results will appear here after tests are submitted.
+            </p>
+
+        </div>
+
+
+        {% endif %}
+
+    </div>
+
+
+
+    {% comment %} <div class="footer">
+
+        📚 Library Management System • Student Performance
+
+    </div> {% endcomment %}
+
+
+</div>
+
+
+</body>
+
+</html>

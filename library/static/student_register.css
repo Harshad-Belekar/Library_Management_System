@@ -1,0 +1,337 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,
+body,
+button,
+input,
+label,
+a,
+textarea{
+    font-family:"Constantia","Times New Roman",Georgia,serif;
+}
+
+body{
+    min-height:100vh;
+
+    background:
+        linear-gradient(rgba(8,35,65,.72),rgba(8,35,65,.72)),
+        url("/static/library.jpg.png")
+        center center / cover no-repeat;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:30px;
+}
+
+
+/* MAIN BOX */
+
+.register-box{
+    width:950px;
+    min-height:570px;
+
+    display:flex;
+
+    background:rgba(255,255,255,.10);
+
+    border:1px solid rgba(255,255,255,.25);
+
+    border-radius:22px;
+
+    overflow:hidden;
+
+    box-shadow:0 20px 55px rgba(0,0,0,.60);
+}
+
+
+/* LEFT SIDE */
+
+.left{
+    width:45%;
+
+    padding:55px 45px;
+
+    color:white;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+
+    background:rgba(10,40,70,.48);
+}
+
+.book{
+    font-size:65px;
+    margin-bottom:20px;
+}
+
+.left h1{
+    font-size:38px;
+    color:#ffad00;
+    margin-bottom:10px;
+}
+
+.left h2{
+    font-size:21px;
+    font-weight:normal;
+    color:white;
+    margin-bottom:25px;
+}
+
+.left p{
+    font-size:16px;
+    line-height:1.7;
+    color:#e5edf5;
+}
+
+.features{
+    margin-top:25px;
+    color:#dcecff;
+    font-size:14px;
+    line-height:2;
+}
+
+
+/* RIGHT SIDE */
+
+.right{
+    width:55%;
+
+    padding:40px 50px;
+
+    background:rgba(7,28,50,.95);
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+
+/* STUDENT ICON */
+
+.student-icon{
+    width:78px;
+    height:78px;
+
+    margin:0 auto 14px;
+
+    border:2px solid #32a8ff;
+
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:40px;
+
+    background:rgba(20,100,170,.30);
+
+    box-shadow:
+        0 0 22px rgba(40,160,255,.35),
+        inset 0 0 15px rgba(80,180,255,.15);
+}
+
+
+/* TITLE */
+
+.right h2{
+    text-align:center;
+    color:white;
+    font-size:29px;
+    margin-bottom:5px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#9db4ca;
+    font-size:14px;
+    margin-bottom:22px;
+}
+
+
+/* ERROR */
+
+.error{
+    background:rgba(220,50,50,.15);
+
+    border:1px solid #e74c3c;
+
+    color:#ff958b;
+
+    padding:9px;
+
+    border-radius:7px;
+
+    text-align:center;
+
+    margin-bottom:15px;
+
+    font-size:14px;
+}
+
+
+/* FORM */
+
+.form-row{
+    display:flex;
+    gap:15px;
+}
+
+.form-group{
+    flex:1;
+}
+
+label{
+    display:block;
+
+    color:#dce9f5;
+
+    font-size:14px;
+
+    margin-bottom:6px;
+}
+
+input{
+    width:100%;
+
+    padding:12px 14px;
+
+    margin-bottom:15px;
+
+    border:none;
+
+    outline:none;
+
+    border-radius:8px;
+
+    background:#132d46;
+
+    color:white;
+
+    font-size:15px;
+
+    border:1px solid #31516d;
+
+    transition:.3s;
+}
+
+input::placeholder{
+    color:#7f9bb4;
+}
+
+input:focus{
+    border-color:#32a8ff;
+
+    box-shadow:0 0 8px rgba(50,168,255,.25);
+}
+
+
+/* REGISTER BUTTON */
+
+.register-btn{
+    width:100%;
+
+    padding:13px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:linear-gradient(135deg,#1599ef,#0865c7);
+
+    color:white;
+
+    font-size:17px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.3);
+
+    transition:.3s;
+}
+
+.register-btn:hover{
+    transform:translateY(-2px);
+
+    background:linear-gradient(135deg,#28aaff,#0874d5);
+}
+
+
+/* LINKS */
+
+.links{
+    text-align:center;
+    margin-top:18px;
+}
+
+.links a{
+    color:#42adff;
+
+    text-decoration:none;
+
+    font-size:14px;
+}
+
+.links a:hover{
+    color:#ffad00;
+}
+
+.home{
+    margin-top:10px;
+}
+
+.home a{
+    color:#b9c9d8;
+}
+
+
+/* MOBILE */
+
+@media(max-width:800px){
+
+    body{
+        padding:15px;
+    }
+
+    .register-box{
+        width:100%;
+        flex-direction:column;
+    }
+
+    .left,
+    .right{
+        width:100%;
+    }
+
+    .left{
+        padding:35px;
+        text-align:center;
+    }
+
+    .left h1{
+        font-size:30px;
+    }
+
+    .right{
+        padding:35px;
+    }
+}
+
+
+@media(max-width:500px){
+
+    .form-row{
+        flex-direction:column;
+        gap:0;
+    }
+
+}

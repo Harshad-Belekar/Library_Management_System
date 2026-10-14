@@ -1,0 +1,138 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Student Login - Library Management System</title>
+
+<link rel="stylesheet" href="{% static 'student_login.css' %}">
+
+</head>
+
+
+<body>
+
+
+<div class="login-box">
+
+
+    <!-- LEFT -->
+
+    <div class="left">
+
+        <div class="book">
+            📚
+        </div>
+
+        <h1>
+            Student Portal
+        </h1>
+
+        <h2>
+            Learn • Read • Grow
+        </h2>
+
+        <p>
+            Access your library account, explore books,
+            take knowledge tests and track your learning
+            progress from one place.
+        </p>
+
+    </div>
+
+
+    <!-- RIGHT -->
+
+    <div class="right">
+
+        <div class="student-icon">
+            🎓
+        </div>
+
+        <h2>
+            Student Login
+        </h2>
+
+        <div class="subtitle">
+            Login to access your library account
+        </div>
+
+
+        {% if error %}
+
+        <div class="error">
+            {{ error }}
+        </div>
+
+        {% endif %}
+
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+
+            <label>
+                Username
+            </label>
+
+            <input
+                type="text"
+                name="username"
+                placeholder="Enter your username"
+                required
+            >
+
+
+            <label>
+                Password
+            </label>
+
+            <input
+                type="password"
+                name="password"
+                placeholder="Enter your password"
+                required
+            >
+
+
+            <button
+                type="submit"
+                class="login-btn"
+            >
+                🎓 &nbsp; STUDENT LOGIN
+            </button>
+
+        </form>
+
+
+        <div class="links">
+
+            <a href="{% url 'student_register' %}">
+                New Student? Create Account
+            </a>
+
+            <div class="home">
+
+                <a href="{% url 'home' %}">
+                    ← Back to Home
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+</body>
+
+</html>

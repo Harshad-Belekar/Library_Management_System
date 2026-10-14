@@ -1,0 +1,153 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Library Management System</title>
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="{% static 'home.css' %}">
+
+</head>
+
+<body>
+
+<div class="page">
+
+    <div class="main-box">
+
+
+        <!-- HEADER -->
+
+        <div class="header">
+
+            <div class="book">
+                📖
+            </div>
+
+            <div class="header-text">
+
+                <h1>
+                    LIBRARY MANAGEMENT SYSTEM
+                </h1>
+
+                <p>
+                    Smart Library • Learn • Grow
+                </p>
+
+            </div>
+
+            <div class="books-right">
+                📚
+            </div>
+
+        </div>
+
+
+        <!-- LOGIN TITLE -->
+
+        <div class="login-title">
+
+            <span></span>
+
+            <div>
+                SELECT LOGIN TYPE
+            </div>
+
+            <span></span>
+
+        </div>
+
+
+        <!-- CARDS -->
+
+        <div class="cards">
+
+
+            <!-- ADMIN -->
+
+            <div class="card admin">
+
+                <div class="profile">
+                    👨‍💼
+                </div>
+
+                <h2>
+                    ADMIN
+                </h2>
+
+                <div class="line"></div>
+
+                <p>
+                    Effortlessly manage library operations,
+                    student tests, requests, issue-return,
+                    and insightful reports.
+                </p>
+
+                <a
+                    href="/admin-login/"
+                    class="login-btn admin-btn"
+                >
+                    🛡 &nbsp; ADMIN LOGIN &nbsp; →
+                </a>
+
+            </div>
+
+
+            <!-- STUDENT -->
+
+            <div class="card student">
+
+                <div class="profile">
+                    🎓
+                </div>
+
+                <h2>
+                    STUDENT
+                </h2>
+
+                <div class="line blue-line"></div>
+
+                <p>
+                    Explore books, take tests,
+                    view results, and get personalized
+                    book recommendations.
+                </p>
+
+                <a
+                    href="/student/login/"
+                    class="login-btn student-btn"
+                >
+                    👤 &nbsp; STUDENT LOGIN &nbsp; →
+                </a>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- REGISTER -->
+
+        <a
+            href="/student/register/"
+            class="register"
+        >
+            👤+ &nbsp;
+            NEW STUDENT?
+            <strong>CREATE ACCOUNT</strong>
+            &nbsp; →
+        </a>
+
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

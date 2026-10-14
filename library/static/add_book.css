@@ -1,0 +1,341 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Constantia","Times New Roman",Georgia,serif;
+}
+
+body{
+    min-height:100vh;
+
+    background:
+        linear-gradient(
+            rgba(10,35,65,.58),
+            rgba(10,35,65,.68)
+        ),
+        url("/static/library.jpg.png")
+        center/cover fixed no-repeat;
+
+    color:#172b4d;
+}
+
+/* HEADER */
+
+.header{
+    min-height:82px;
+    padding:15px 45px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    background:rgba(15,38,68,.92);
+
+    border-bottom:1px solid rgba(255,255,255,.15);
+
+    box-shadow:0 5px 25px rgba(0,0,0,.3);
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:14px;
+}
+
+.brand-icon{
+    width:52px;
+    height:52px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:15px;
+
+    background:linear-gradient(
+        135deg,
+        #69b3ff,
+        #2477c5
+    );
+
+    font-size:27px;
+}
+
+.brand h1{
+    color:white;
+    font-size:27px;
+}
+
+.brand p{
+    color:#c9d8e8;
+    font-size:14px;
+    margin-top:4px;
+}
+
+.back{
+    text-decoration:none;
+    color:white;
+
+    padding:11px 20px;
+
+    border-radius:25px;
+
+    background:rgba(255,255,255,.10);
+
+    border:1px solid rgba(255,255,255,.25);
+
+    transition:.3s;
+}
+
+.back:hover{
+    background:#2477c5;
+    transform:translateY(-2px);
+}
+
+
+/* MAIN */
+
+.container{
+    width:92%;
+    max-width:850px;
+
+    margin:40px auto 60px;
+}
+
+
+/* FORM CARD */
+
+.form-card{
+    background:rgba(255,255,255,.95);
+
+    border-radius:25px;
+
+    padding:35px 42px;
+
+    box-shadow:0 18px 45px rgba(0,0,0,.3);
+}
+
+
+.title{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.title-icon{
+    width:70px;
+    height:70px;
+
+    margin:0 auto 14px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:18px;
+
+    background:#e8f3ff;
+
+    font-size:35px;
+}
+
+.title h2{
+    color:#172b4d;
+    font-size:28px;
+}
+
+.title p{
+    color:#7b8795;
+    font-size:14px;
+    margin-top:6px;
+}
+
+
+/* FORM */
+
+form{
+    width:100%;
+}
+
+.row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+}
+
+.field{
+    margin-bottom:20px;
+}
+
+label{
+    display:block;
+
+    margin-bottom:8px;
+
+    color:#172b4d;
+
+    font-size:15px;
+
+    font-weight:bold;
+}
+
+input,
+textarea{
+    width:100%;
+
+    padding:13px 15px;
+
+    border:1px solid #d7e0ea;
+
+    border-radius:12px;
+
+    background:#f8fbff;
+
+    color:#172b4d;
+
+    font-size:15px;
+
+    outline:none;
+
+    transition:.25s;
+}
+
+input:focus,
+textarea:focus{
+    border-color:#4da3ff;
+
+    background:white;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(77,163,255,.12);
+}
+
+textarea{
+    height:120px;
+
+    resize:vertical;
+}
+
+
+/* BUTTONS */
+
+.buttons{
+    display:flex;
+    gap:12px;
+
+    margin-top:10px;
+}
+
+.save,
+.cancel{
+    flex:1;
+
+    padding:14px;
+
+    border-radius:25px;
+
+    text-align:center;
+
+    text-decoration:none;
+
+    font-size:15px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.save{
+    border:none;
+
+    color:white;
+
+    background:linear-gradient(
+        135deg,
+        #4da3ff,
+        #1769aa
+    );
+
+    box-shadow:
+        0 8px 20px
+        rgba(36,119,197,.25);
+}
+
+.save:hover{
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 12px 25px
+        rgba(36,119,197,.35);
+}
+
+.cancel{
+    color:#536477;
+
+    background:#eef2f6;
+
+    border:1px solid #dce3ea;
+}
+
+.cancel:hover{
+    background:#dfe6ed;
+
+    transform:translateY(-2px);
+}
+
+
+/* FOOTER */
+
+.footer{
+    text-align:center;
+
+    margin-top:18px;
+
+    color:#e2edf8;
+
+    font-size:13px;
+}
+
+
+/* MOBILE */
+
+@media(max-width:650px){
+
+    .header{
+        padding:18px 20px;
+
+        flex-direction:column;
+
+        gap:15px;
+
+        text-align:center;
+    }
+
+    .brand{
+        justify-content:center;
+    }
+
+    .brand h1{
+        font-size:22px;
+    }
+
+    .container{
+        width:92%;
+    }
+
+    .form-card{
+        padding:28px 22px;
+    }
+
+    .row{
+        grid-template-columns:1fr;
+        gap:0;
+    }
+
+    .buttons{
+        flex-direction:column;
+    }
+
+}

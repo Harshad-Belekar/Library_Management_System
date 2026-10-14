@@ -1,0 +1,227 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Manage Tests - Library Management System</title>
+
+    <link rel="stylesheet" href="{% static 'manage_tests.css' %}">
+
+</head>
+
+
+<body>
+
+
+<!-- HEADER -->
+
+<div class="header">
+
+    <div class="brand">
+
+        <div class="brand-icon">
+            📝
+        </div>
+
+        <div>
+
+            <h1>Manage Tests</h1>
+
+            <p>
+                Create, manage and organize student tests
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <a
+        href="{% url 'admin_dashboard' %}"
+        class="back"
+    >
+        ← Dashboard
+    </a>
+
+</div>
+
+
+
+<!-- MAIN -->
+
+<div class="container">
+
+
+    <!-- TOP CARD -->
+
+    <div class="top-card">
+
+        <div class="heading">
+
+            <div class="heading-icon">
+                📝
+            </div>
+
+            <div>
+
+                <h2>Test Management</h2>
+
+                <div class="count">
+
+                    Total Tests:
+
+                    <strong>
+                        {{ tests|length }}
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <a
+            href="{% url 'create_test' %}"
+            class="create-btn"
+        >
+            ＋ Create New Test
+        </a>
+
+    </div>
+
+
+
+    <!-- TESTS -->
+
+    {% if tests %}
+
+    <div class="test-grid">
+
+        {% for test in tests %}
+
+        <div class="test-card">
+
+
+            <div class="test-top">
+
+                <div class="test-icon">
+                    📝
+                </div>
+
+                <div class="question-count">
+
+                    {{ test.total_questions }}
+                    Questions
+
+                </div>
+
+            </div>
+
+
+
+            <h3 class="test-title">
+                {{ test.title }}
+            </h3>
+
+
+            <span class="category">
+                {{ test.category }}
+            </span>
+
+
+            <p class="description">
+
+                {% if test.description %}
+
+                    {{ test.description }}
+
+                {% else %}
+
+                    No description available for this test.
+
+                {% endif %}
+
+            </p>
+
+
+
+            <div class="actions">
+
+                <a
+                    href="{% url 'add_question' test.id %}"
+                    class="questions"
+                >
+                    ＋ Add Questions
+                </a>
+
+
+                <a
+                    href="{% url 'delete_test' test.id %}"
+                    class="delete"
+                    onclick="return confirm('Delete this test?');"
+                >
+                    🗑 Delete
+                </a>
+
+            </div>
+
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+
+    {% else %}
+
+
+    <!-- EMPTY -->
+
+    <div class="empty">
+
+        <div class="empty-icon">
+            📝
+        </div>
+
+        <h3>
+            No Tests Available
+        </h3>
+
+        <p>
+            Create your first test to start student assessments.
+        </p>
+
+        <a
+            href="{% url 'create_test' %}"
+            class="create-btn"
+        >
+            ＋ Create First Test
+        </a>
+
+    </div>
+
+
+    {% endif %}
+
+
+{% comment %} 
+    <div class="footer">
+
+        📚 Library Management System • Test Management
+
+    </div> {% endcomment %}
+
+
+</div>
+
+
+</body>
+
+</html>

@@ -1,0 +1,768 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>{{ book.title }} - Study Material</title>
+
+<link rel="stylesheet" href="{% static 'book_study.css' %}">
+
+</head>
+
+
+<body>
+
+
+<!-- ================= HEADER ================= -->
+
+<header class="header">
+
+    <div class="logo">
+        📚 <span>Library Management System</span>
+    </div>
+
+    <a
+        href="{% url 'student_dashboard' %}?username={{ student.username }}"
+        class="back-btn"
+    >
+        ← Dashboard
+    </a>
+
+</header>
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="main">
+
+
+    <!-- BOOK INFORMATION -->
+
+    <section class="book-header">
+
+        <div class="book-icon">
+            📘
+        </div>
+
+        <h1>
+            {{ book.title }}
+        </h1>
+
+        <p class="author">
+            <b>Author:</b> {{ book.author }}
+        </p>
+
+        <div class="book-info">
+
+            <span class="info">
+                Category: {{ book.category }}
+            </span>
+
+            <span class="info">
+                ISBN: {{ book.isbn }}
+            </span>
+
+            <span class="info">
+                Available: {{ book.quantity }}
+            </span>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= STUDY MATERIAL ================= -->
+
+    <section class="study-container">
+
+        <div class="subject-badge">
+            📖 Study Material
+        </div>
+
+        <h1 class="study-heading">
+            Learn Before You Take the Test
+        </h1>
+
+        <p class="study-subheading">
+            Read the following study material carefully.
+            After completing your study, you can attempt the
+            10 marks test prepared for this subject.
+        </p>
+
+
+        <!-- ================================================= -->
+        <!-- ARTIFICIAL INTELLIGENCE -->
+        <!-- ================================================= -->
+
+        {% if "Artificial Intelligence" in book.title %}
+
+        <div class="chapter">
+
+            <h2>
+                🤖 1. Introduction to Artificial Intelligence
+            </h2>
+
+            <p>
+                Artificial Intelligence, commonly called AI, is a branch
+                of computer science that focuses on creating machines
+                and software capable of performing tasks that normally
+                require human intelligence.
+            </p>
+
+            <p>
+                AI systems can learn from information, solve problems,
+                understand language, recognize patterns and make
+                decisions.
+            </p>
+
+            <div class="note">
+
+                <strong>Remember:</strong>
+
+                <p>
+                    AI aims to make computer systems capable of
+                    performing intelligent tasks.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="chapter">
+
+            <h2>
+                🧠 2. Intelligent Agents
+            </h2>
+
+            <p>
+                An intelligent agent is a system that observes its
+                environment through sensors and performs actions
+                using actuators.
+            </p>
+
+            <h3>Examples</h3>
+
+            <ul>
+                <li>Self-driving vehicles</li>
+                <li>Voice assistants</li>
+                <li>Recommendation systems</li>
+                <li>Robots</li>
+                <li>Game-playing programs</li>
+            </ul>
+
+            <div class="example">
+
+                <strong>Example:</strong>
+
+                <p>
+                    A robot can use sensors to understand its
+                    surroundings and motors to move.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="chapter">
+
+            <h2>
+                🔍 3. Problem Solving and Search
+            </h2>
+
+            <p>
+                AI systems often need to find a solution to a problem.
+                Search algorithms help an AI system explore possible
+                solutions and select an appropriate one.
+            </p>
+
+            <h3>Common Search Techniques</h3>
+
+            <ul>
+                <li>Breadth First Search</li>
+                <li>Depth First Search</li>
+                <li>Uniform Cost Search</li>
+                <li>Greedy Search</li>
+                <li>A* Search</li>
+            </ul>
+
+        </div>
+
+
+        <div class="chapter">
+
+            <h2>
+                📚 4. Knowledge Representation
+            </h2>
+
+            <p>
+                Knowledge representation is the process of storing
+                information in a form that an AI system can use for
+                reasoning and decision making.
+            </p>
+
+            <p>
+                Knowledge can be represented using rules, facts,
+                relationships and logical structures.
+            </p>
+
+        </div>
+
+
+        <div class="chapter">
+
+            <h2>
+                🤖 5. Machine Learning
+            </h2>
+
+            <p>
+                Machine Learning is an important area of AI where
+                computer systems learn patterns from data instead of
+                being explicitly programmed for every situation.
+            </p>
+
+            <h3>Types of Machine Learning</h3>
+
+            <ul>
+                <li>Supervised Learning</li>
+                <li>Unsupervised Learning</li>
+                <li>Reinforcement Learning</li>
+            </ul>
+
+        </div>
+
+
+        <div class="chapter">
+
+            <h2>
+                🧬 6. Deep Learning
+            </h2>
+
+            <p>
+                Deep Learning is a part of machine learning that uses
+                neural networks with multiple layers to learn complex
+                patterns from large amounts of data.
+            </p>
+
+            <p>
+                Deep learning is commonly used in image recognition,
+                speech recognition and natural language applications.
+            </p>
+
+        </div>
+
+
+        <div class="chapter">
+
+            <h2>
+                💬 7. Natural Language Processing
+            </h2>
+
+            <p>
+                Natural Language Processing, or NLP, allows computers
+                to process and understand human language.
+            </p>
+
+            <ul>
+                <li>Text classification</li>
+                <li>Language translation</li>
+                <li>Chatbots</li>
+                <li>Speech recognition</li>
+                <li>Sentiment analysis</li>
+            </ul>
+
+        </div>
+
+
+        <!-- ================================================= -->
+        <!-- DJANGO -->
+        <!-- ================================================= -->
+
+        {% elif "Django" in book.title %}
+
+        <div class="chapter">
+
+            <h2>
+                🌐 1. Introduction to Django
+            </h2>
+
+            <p>
+                Django is a high-level Python web framework used to
+                build secure, scalable and maintainable web applications.
+            </p>
+
+            <p>
+                Django follows the Model-Template-View architecture
+                and provides many features required for web development.
+            </p>
+
+            <div class="note">
+
+                <strong>Remember:</strong>
+
+                <p>
+                    Django is built using Python and is mainly used
+                    for web application development.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="chapter">
+
+            <h2>
+                🏗️ 2. Django Project and App
+            </h2>
+
+            <p>
+                A Django project contains the overall configuration
+                of a website, while an app contains functionality
+                for a particular feature.
+            </p>
+
+            <h3>Examples of Apps</h3>
+
+            <ul>
+                <li>Student Management</li>
+                <li>Library Management</li>
+                <li>Authentication</li>
+                <li>Shopping Cart</li>
+            </ul>
+
+        </div>
+
+
+        <div class="chapter">
+
+            <h2>
+                🗄️ 3. Models
+            </h2>
+
+            <p>
+                Models are Python classes used to define the structure
+                of data stored in the database.
+            </p>
+
+            <p>
+                Each model generally represents a database table.
+                Model fields represent the information stored in that table.
+            </p>
+
+            <div class="example">
+
+                <strong>Example:</strong>
+
+                <p>
+                    A Book model can contain title, author, ISBN,
+                    category and quantity.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="chapter">
+
+            <h2>
+                👁️ 4. Views
+            </h2>
+
+            <p>
+                Views contain the application logic. A view receives
+                a request, performs required operations and returns
+                a response.
+            </p>
+
+            <p>
+                Views can retrieve information from models and send
+                that information to templates.
+            </p>
+
+        </div>
+
+
+        <div class="chapter">
+
+            <h2>
+                🎨 5. Templates
+            </h2>
+
+            <p>
+                Templates are HTML files used to create the user
+                interface of a Django application.
+            </p>
+
+            <p>
+                Django Template Language allows dynamic information
+                from views to be displayed inside HTML pages.
+            </p>
+
+        </div>
+
+
+        <div class="chapter">
+
+            <h2>
+                🔗 6. URLs
+            </h2>
+
+            <p>
+                URL patterns connect a browser URL to a particular
+                Django view.
+            </p>
+
+            <p>
+                For example, a URL can connect a student dashboard
+                address to the student dashboard view.
+            </p>
+
+        </div>
+
+
+        <div class="chapter">
+
+            <h2>
+                📝 7. Forms
+            </h2>
+
+            <p>
+                Django forms are used to collect information from
+                users and process submitted data.
+            </p>
+
+            <ul>
+                <li>Registration forms</li>
+                <li>Login forms</li>
+                <li>Book forms</li>
+                <li>Test forms</li>
+                <li>Search forms</li>
+            </ul>
+
+        </div>
+
+
+        <div class="chapter">
+
+            <h2>
+                🗃️ 8. Database
+            </h2>
+
+            <p>
+                Django provides an Object Relational Mapper, commonly
+                called ORM, which allows developers to work with
+                databases using Python objects.
+            </p>
+
+            <p>
+                This reduces the need to write raw SQL for common
+                database operations.
+            </p>
+
+        </div>
+
+
+        <!-- ================================================= -->
+        <!-- DATA SCIENCE -->
+        <!-- ================================================= -->
+
+        {% elif "Data Science" in book.title %}
+
+        <div class="chapter">
+
+            <h2>
+                📊 1. Introduction to Data Science
+            </h2>
+
+            <p>
+                Data Science is the process of collecting, cleaning,
+                analyzing and interpreting data to obtain useful
+                information and insights.
+            </p>
+
+            <p>
+                It combines programming, statistics, mathematics
+                and analytical techniques.
+            </p>
+
+            <div class="note">
+
+                <strong>Remember:</strong>
+
+                <p>
+                    Data Science helps convert raw data into
+                    meaningful information.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="chapter">
+
+            <h2>
+                🐍 2. Python for Data Science
+            </h2>
+
+            <p>
+                Python is widely used in Data Science because it
+                provides powerful libraries for data manipulation,
+                analysis and visualization.
+            </p>
+
+            <h3>Important Libraries</h3>
+
+            <ul>
+                <li>NumPy</li>
+                <li>Pandas</li>
+                <li>Matplotlib</li>
+                <li>Seaborn</li>
+            </ul>
+
+        </div>
+
+
+        <div class="chapter">
+
+            <h2>
+                🔢 3. NumPy
+            </h2>
+
+            <p>
+                NumPy is a Python library used mainly for numerical
+                computing and working with arrays.
+            </p>
+
+            <p>
+                It provides efficient operations for mathematical
+                calculations and multidimensional arrays.
+            </p>
+
+        </div>
+
+
+        <div class="chapter">
+
+            <h2>
+                🐼 4. Pandas
+            </h2>
+
+            <p>
+                Pandas is a Python library used for data manipulation
+                and analysis.
+            </p>
+
+            <h3>Common Pandas Operations</h3>
+
+            <ul>
+                <li>Reading CSV files</li>
+                <li>Creating DataFrames</li>
+                <li>Filtering data</li>
+                <li>Grouping data</li>
+                <li>Handling missing values</li>
+                <li>Sorting data</li>
+            </ul>
+
+        </div>
+
+
+        <div class="chapter">
+
+            <h2>
+                🧹 5. Data Cleaning
+            </h2>
+
+            <p>
+                Data cleaning is the process of identifying and
+                correcting incomplete, incorrect or inconsistent data.
+            </p>
+
+            <h3>Common Tasks</h3>
+
+            <ul>
+                <li>Handling missing values</li>
+                <li>Removing duplicate records</li>
+                <li>Correcting data types</li>
+                <li>Handling incorrect values</li>
+            </ul>
+
+        </div>
+
+
+        <div class="chapter">
+
+            <h2>
+                📈 6. Data Visualization
+            </h2>
+
+            <p>
+                Data visualization represents information using
+                charts and graphs so that patterns and trends can
+                be understood easily.
+            </p>
+
+            <h3>Common Charts</h3>
+
+            <ul>
+                <li>Bar Chart</li>
+                <li>Line Chart</li>
+                <li>Pie Chart</li>
+                <li>Histogram</li>
+                <li>Scatter Plot</li>
+            </ul>
+
+        </div>
+
+
+        <div class="chapter">
+
+            <h2>
+                📐 7. Statistics
+            </h2>
+
+            <p>
+                Statistics helps us understand and summarize data.
+                Common statistical measures include mean, median,
+                mode, minimum and maximum.
+            </p>
+
+            <div class="example">
+
+                <strong>Example:</strong>
+
+                <p>
+                    The mean represents the average value of a
+                    collection of numerical observations.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="chapter">
+
+            <h2>
+                🤖 8. Machine Learning
+            </h2>
+
+            <p>
+                Machine Learning allows computers to learn patterns
+                from data and use those patterns to make predictions
+                or decisions.
+            </p>
+
+            <ul>
+                <li>Classification</li>
+                <li>Regression</li>
+                <li>Clustering</li>
+            </ul>
+
+        </div>
+
+
+        <!-- ================================================= -->
+        <!-- OTHER BOOK -->
+        <!-- ================================================= -->
+
+        {% else %}
+
+        <div class="chapter">
+
+            <h2>
+                📚 Introduction
+            </h2>
+
+            <p>
+                This study section provides basic learning material
+                related to <b>{{ book.title }}</b>.
+            </p>
+
+            <p>
+                Read the book description carefully and revise the
+                important concepts related to
+                <b>{{ book.category }}</b>.
+            </p>
+
+        </div>
+
+
+        <div class="chapter">
+
+            <h2>
+                📌 Important Points
+            </h2>
+
+            <ul>
+                <li>Understand the basic concepts.</li>
+                <li>Read the important definitions.</li>
+                <li>Review the examples.</li>
+                <li>Revise before attempting the test.</li>
+            </ul>
+
+        </div>
+
+        {% endif %}
+
+
+        <!-- ================= TEST ================= -->
+
+        <div class="test-section">
+
+            <h2>
+                📝 Test Your Knowledge
+            </h2>
+
+            <p>
+                You have completed the study material.
+                Now attempt the test related to this subject.
+            </p>
+
+            <div class="test-info">
+                🎯 Test Marks: 10
+            </div>
+
+            <br>
+
+            <a
+                href="{% url 'student_tests' %}?username={{ student.username }}"
+                class="test-btn"
+            >
+                📝 Start 10 Marks Test →
+            </a>
+
+        </div>
+
+
+    </section>
+
+
+    <!-- ================= BACK ================= -->
+
+    <div class="bottom">
+
+        <a
+            href="{% url 'student_books' %}?username={{ student.username }}"
+            class="books-btn"
+        >
+            ← Back to Available Books
+        </a>
+
+    </div>
+
+
+</main>
+
+
+</body>
+
+</html>
